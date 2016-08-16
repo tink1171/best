@@ -1,0 +1,78 @@
+package com.kp.service;
+
+import com.kp.dto.UserDto;
+import com.kp.errors.EmailExistsException;
+import com.kp.errors.UserAlreadyExistException;
+import com.kp.model.model_of_user.User;
+import com.kp.model.verification_token.VerificationToken;
+import com.kp.repository.RoleRepository;
+import com.kp.repository.UserRepository;
+import com.kp.repository.VerificationTokenRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.Arrays;
+
+/**
+ * Created by diman on 15.08.16.
+ */
+@Service
+@Transactional
+public class UserServiceImpl implements UserService {
+
+	@Autowired
+	private UserRepository repository;
+
+	@Autowired
+	private RoleRepository roleRepository;
+
+	@Autowired
+	private VerificationTokenRepository tokenRepository;
+
+	@Override
+	public User registerNewUserAccount(UserDto accountDto) throws EmailExistsException {
+		if (emailExist(accountDto.getEmail())) {
+			throw new UserAlreadyExistException("There is an account with that email adress: " + accountDto.getEmail());
+		}
+		final User user = new User();
+
+		user.setFirstName(accountDto.getFirstName());
+		user.setLastName(accountDto.getLastName());
+		user.setPassword(accountDto.getPassword());
+		user.setEmail(accountDto.getEmail());
+
+		user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
+		return repository.save(user);
+	}
+
+	@Override
+	public void createVerificationTokenForUser(final User user,final String token) {
+		final VerificationToken myToken = new VerificationToken(token, user);
+		tokenRepository.save(myToken);
+	}
+
+	@Override
+	public User getUser(final String verificationToken) {
+		final User user = tokenRepository.findByToken(verificationToken).getUser();
+		return user;
+	}
+
+	@Override
+	public void saveRegisteredUser(User user) {
+		repository.save(user);
+	}
+
+	@Override
+	public VerificationToken getVerificationToken(final String VerificationToken) {
+		return tokenRepository.findByToken(VerificationToken);
+	}
+
+	private boolean emailExist(String email) {
+		User user = repository.findByEmail(email);
+		if (user != null) {
+			return true;
+		}
+		return false;
+	}
+}

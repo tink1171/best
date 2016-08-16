@@ -1,0 +1,95 @@
+<div class="row">
+    <div class="col-sm-1 btn-group" role="group">
+        <div class="btn btn-default draggable" id="dragg1">
+            <img src="../../resources/img/text.png" height="64" width="64"/></div>
+        <div class="btn btn-default draggable" id="dragg2">
+            <img src="../../resources/img/picture.png" height="64" width="64"/>
+        </div>
+        <div class="btn btn-default draggable"  id="dragg3">
+            <img src="../../resources/img/youtube.png" height="64" width="64"/>
+        </div>
+    </div>
+    <div class="col-sm-3 col-sm-push-8" >
+        <form id="center-content-area">
+            <div class="form-group has-feedback">
+                <label  class="control-label">Enter site name:</label>
+                <input type="text" class="form-control" required="required"
+                       value="" placeholder="Example : Memes" minlength="2" maxlength="30">
+            </div>
+
+            <div class="form-group has-feedback">
+                <label class="control-label">Site description:</label>
+                <textarea id="message" class="form-control" rows="3"
+                          placeholder="Example : Thus site about memes"
+                          minlength="20" maxlength="500" required="required">{{message}}</textarea>
+            </div>
+
+            <div class="form-group has-feedback">
+                <label class="control-label">Choose theme :</label>
+                <label class="radio-inline"><input type="radio" name="optradio"
+                                                   ng-click="change_theme('default')">
+                    Default
+                </label>
+                <label class="radio-inline"><input type="radio" name="optradio"
+                                                   ng-click="change_theme('dark')">
+                    Dark
+                </label>
+            </div>
+            <fieldset>
+                <legend>Select a Location: </legend>
+                <label for="radio-1">
+                    <img src="../../resources/img/template1.png" height="50px" width="50px"/></label>
+                <input type="radio" name="radio-1" id="radio-1" class="radio"
+                       ng-click="change_template('box','box','box','box',1)">
+                <label for="radio-2">
+                    <img src="../../resources/img/template2.png"  height="50px" width="50px"/></label>
+                <input type="radio" name="radio-1" id="radio-2" class="radio"
+                       ng-click="change_template('box','box','rectangle','none',2)">
+                <label for="radio-3">
+                    <img src="../../resources/img/template3.png"  height="50" width="50"/></label>
+                <input type="radio" name="radio-1" id="radio-3" class="radio"
+                       ng-click="change_template('rectangle','none','rectangle','none',3)">
+            </fieldset>
+            <button ng-click="save()">Save</button>
+        </form><!-- Конец формы -->
+    </div>
+    <div class="col-sm-8 col-sm-pull-3 site_container"  ng-class = "theme">
+
+        <ul class="nav nav-pills" >
+            <li class="active"><a href="/#/show-site">Главная</a></li>
+            <li><a href="#">Профиль</a></li>
+            <li><a href="#">Сообщение</a></li>
+        </ul>
+        <script>
+            $( function() {
+                $( "#1, #2").resizable({
+                    containment: ".site_container"
+                });
+
+                $( "#3" ).resizable({
+                    containment: ".site_container"
+                });
+                $( "#4" ).resizable({
+                    containment: ".site_container"
+                });
+            } );
+        </script>
+        <div class="droppable card" ng-class = "type_of_cell_1" id="1"></div>
+        <div class="droppable card" ng-class = "type_of_cell_2" id="2"></div>
+        <div class="droppable card" ng-class = "type_of_cell_3" id="3"></div>
+        <div class="droppable card" ng-class = "type_of_cell_4" id="4"></div>
+    </div>
+
+    <div id="dialog_Youtube" title="Youtube">
+        <input type="text" class="form-control" required="required"
+               placeholder="YouTube Link" minlength="10" id = "link">
+    </div>
+    <div id="dialog_text" >
+        <form method="post">
+            <textarea id="mytextarea" ng-model = "text">Hello, World!</textarea>
+        </form>
+    </div>
+
+</div><!-- Конец контейнера -->
+
+

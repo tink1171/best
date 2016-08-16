@@ -1,0 +1,33 @@
+<div class="col-sm-8 col-sm-push-2" >
+    <div class="col-sm-4 col-sm-push-2 " role="group">
+        <div class="btn btn-default draggable" id="dragg1">
+            <img src="../../resources/img/text.png" height="64" width="64"/></div>
+        <div class="btn btn-default draggable" id="dragg2">
+            <img src="../../resources/img/picture.png" height="64" width="64"/>
+        </div>
+        <div class="btn btn-default draggable"  id="dragg3">
+            <img src="../../resources/img/youtube.png" height="64" width="64"/>
+        </div>
+        <button ng-click="save()">Save</button>
+    </div>
+
+
+
+</div>
+    <div class="col-sm-8 col-sm-push-2 page_container">
+
+
+    </div>
+
+</div>
+
+
+<div id="dialog_Youtube" title="Youtube">
+    <input type="text" class="form-control" required="required"
+           placeholder="YouTube Link" minlength="10" id = "link">
+</div>
+<div id="dialog_text" >
+    <form method="post">
+        <textarea id="mytextarea" ng-model = "text">Hello, World!</textarea>
+    </form>
+</div>

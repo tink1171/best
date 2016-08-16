@@ -1,0 +1,48 @@
+.default {
+    background: white;
+    border: 5px solid #3c3c3c;
+
+}
+
+.page_container{
+    min-height: 700px;
+    height: auto;
+    border: 3px solid #3c3c3c;
+}
+.dark {
+    background: grey;
+    border: 5px solid #3c3c3c;
+}
+
+.none{
+    display: none;
+}
+.box {
+    float:left ;
+    border: 2px solid #3c3c3c;
+    width: 267.5px;
+    margin: 10px;
+    height: 275px;
+}
+
+.rectangle {
+    float:left ;
+    border: 2px solid #3c3c3c;
+    width: 555px;
+    margin: 10px;
+    height: 275px;
+}
+
+.draggable{
+    width: 65px;
+    height: 65px;
+    padding: 0px;
+    margin-bottom: 10px;
+}
+
+.nav{
+    display: block;
+}
+
+
+
