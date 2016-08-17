@@ -16,6 +16,7 @@
     "angular-cookies": "1.5.5",
     "ng-infinite-scroll": "0.0.1",
     "angular-translate": "2.9.0",
-    "angular-tagger": "0.1.12"
+    "angular-tagger": "0.1.12",
+    "marked": "0.3.4"
   }
 }

@@ -1,33 +1,64 @@
-<div class="col-sm-8 col-sm-push-2" >
-    <div class="col-sm-4 col-sm-push-2 " role="group">
+<div class="row" >
+    <div class="col-sm-1 btn-group" role="group">
         <div class="btn btn-default draggable" id="dragg1">
-            <img src="../../resources/img/text.png" height="64" width="64"/></div>
+            <img src="../../static/img/text.png" height="64" width="64"/></div>
         <div class="btn btn-default draggable" id="dragg2">
-            <img src="../../resources/img/picture.png" height="64" width="64"/>
+            <img src="../../static/img/picture.png" height="64" width="64"/>
         </div>
         <div class="btn btn-default draggable"  id="dragg3">
-            <img src="../../resources/img/youtube.png" height="64" width="64"/>
+            <img src="../../static/img/youtube.png" height="64" width="64"/>
         </div>
         <button ng-click="save()">Save</button>
     </div>
 
 
+    <div class="col-sm-8  page_container">
 
-</div>
-    <div class="col-sm-8 col-sm-push-2 page_container">
-
-
+        <div class="rectangle droppable connectedSortable" id = "1"></div>
+        <div class="box droppable connectedSortable" id="2"></div>
+        <div class="box droppable connectedSortable" id="3"></div>
     </div>
 
+    <div class="col-sm-3 " >
+        <form id="center-content-area">
+            <div class="form-group has-feedback">
+                <label  class="control-label">Enter site name:</label>
+                <input type="text" class="form-control" required="required"
+                       value="" placeholder="Example : Memes" minlength="2" maxlength="30">
+            </div>
+
+            <fieldset>
+                <legend>Select a Location: </legend>
+                <label for="radio-1">
+                    <img src="../../static/img/template1.png" height="50px" width="50px"/></label>
+                <input type="radio" name="radio-1" id="radio-1" class="radio"
+                       ng-click="change_template('box','box','box','box',1)">
+                <label for="radio-2">
+                    <img src="../../static/img/template2.png"  height="50px" width="50px"/></label>
+                <input type="radio" name="radio-1" id="radio-2" class="radio"
+                       ng-click="change_template('box','box','rectangle','none',2)">
+                <label for="radio-3">
+                    <img src="../../static/img/template3.png"  height="50" width="50"/></label>
+                <input type="radio" name="radio-1" id="radio-3" class="radio"
+                       ng-click="change_template('rectangle','none','rectangle','none',3)">
+            </fieldset>
+            <button ng-click="save()">Save</button>
+        </form><!-- Конец формы -->
+    </div>
 </div>
 
-
-<div id="dialog_Youtube" title="Youtube">
-    <input type="text" class="form-control" required="required"
-           placeholder="YouTube Link" minlength="10" id = "link">
+<div id="hide_youtube" style="display: none">
+    <div class="form-group has-feedback youtube_container">
+        <label  class="control-label">Enter site name:</label>
+        <input type="text" class="form-control" required="required"
+            value="" placeholder="YouTube Link" minlength="10" maxlength="30">
+    </div>'
 </div>
-<div id="dialog_text" >
+
+<div id="hide_text" style="display: none">
+    <div>
     <form method="post">
-        <textarea id="mytextarea" ng-model = "text">Hello, World!</textarea>
-    </form>
+        <textarea class="mytextarea" >Hello, World!</textarea>
+        </form>
+    </div>
 </div>

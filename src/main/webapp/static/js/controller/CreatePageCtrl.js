@@ -6,9 +6,22 @@
 
 siteApp.controller('CreatePageCtrl', ['$scope','$http', function( $scope, $http){
     var ppage = {};
-    var id = 0;
-    make_dialog();
-    make_drag_and_drop(id);
+    $( function() {
+        $( ".radio" ).checkboxradio({
+            icon: false
+        });
+    });
+    $( function() {
+        $( "#1,#2, #3" ).sortable({
+            connectWith: ".connectedSortable",
+            update: function () {
+                tinymce.init({
+                    selector: '.mytextarea'
+                });
+            }
+        });
+    } );
+    make_drag_and_drop();
 
     $scope.save = function () {
         ppage.content = $('.page_container').html();
@@ -24,47 +37,23 @@ siteApp.controller('CreatePageCtrl', ['$scope','$http', function( $scope, $http)
 }]);
 
 
-function make_dialog() {
-    $('#dialog_Youtube').dialog({
-        autoOpen: false,
-        modal: true
-    });
-    $('#dialog_text').dialog({
-        autoOpen: false,
-        modal: true
-    });
-}
 
-function make_resizable() {
-    $( function() {
-        $( ".resizable" ).resizable({
-            containment: ".page_container"
-        });
-    } );
-}
 
-function make_drag_and_drop(id) {
+function make_drag_and_drop() {
     $('div.draggable').draggable({
         revert:true,
         helper: "clone"
 
     });
-    $('.page_container').droppable({
+    $('.droppable').droppable({
         drop: function(event , ui) {
             var dragg_id = ui.draggable.attr("id");
             var box_id = this;
-            $('.page_container').append('<div class ="resizable box" id = ' + id + '></div>' );
-            make_resizable();
-            if(dragg_id == "dragg1") {add_text('#'+id);}
-            if(dragg_id == "dragg2") {add_image('#'+id);}
-            if(dragg_id == "dragg3") {add_Youtube('#'+id);}
-            id = id+1;
+
+            if(dragg_id == "dragg1") {add_text(box_id);}
+            if(dragg_id == "dragg2") {add_image(box_id);}
+            if(dragg_id == "dragg3") {add_Youtube(box_id);}
         },
-        over: function() {
-            $(this).css({
-                border: "medium double blue"
-            });
-        }
 
     });
 
@@ -72,30 +61,28 @@ function make_drag_and_drop(id) {
 
 
 function add_Youtube(box_id) {
-    $('#dialog_Youtube').dialog("open").dialog({
-        buttons: [{
-            text: "OK", click: function () {
-                var youtube_link = $("#link").val();
-                $(box_id).append('<iframe class="resizable" width="100%" height="100%" src=' + youtube_link + ' frameborder="0" allowfullscreen></iframe>');
-                $(this).dialog("close");
-            }
-        }]
-    });
+    $(box_id).append($("#hide_youtube").html());
+
+
+
+
 }
 
 function add_text(box_id) {
+
+    $(box_id).append($("#hide_text").html());
     tinymce.init({
-        selector: '#mytextarea'
+        selector: '.mytextarea'
     });
-    $('#dialog_text').dialog("open").dialog({
-        buttons: [{
-            text: "OK", click: function () {
-                var text = tinymce.get('mytextarea').getContent();
-                $(box_id).append(text);
-                $(this).dialog("close");
-            }
-        }]
-    });
+    // $('#dialog_text').dialog("open").dialog({
+    //     buttons: [{
+    //         text: "OK", click: function () {
+    //             var text = tinymce.get('mytextarea').getContent();
+    //             $(box_id).append(text);
+    //             $(this).dialog("close");
+    //         }
+    //     }]
+    // });
 }
 
 function add_image(box_id) {
