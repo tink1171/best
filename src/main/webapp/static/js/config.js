@@ -87,8 +87,8 @@ siteApp.config([
         );
 
         $translateProvider.translations('en', {
-            COMIX:'COMIX',
-            COMICS:'Comics',
+            SITE:'SITE',
+            SITES:'Sites',
             HOME: 'Home',
             LOGIN: 'Login',
             REGISTRATION: 'Registration',
@@ -98,7 +98,7 @@ siteApp.config([
             SORT:'Sort by',
             BYDATE:'By date',
             BYRATE:'By rate',
-            VIEW_COMIX:'view comix',
+            VIEW_SITE:'view site',
             COMMENTS:'Comments',
             USERNAME:'Username',
             PASSWORD:'Password',
@@ -116,7 +116,7 @@ siteApp.config([
             LOGOUT:'Logout',
             FIRST_NAME:'First name',
             LAST_NAME:'Last name',
-            EMAIL:'email',
+            EMAIL:'Email',
             ABOUT:'About',
             EDIT_USER:'Edit user',
             SAVE:'Save',
@@ -129,6 +129,7 @@ siteApp.config([
             CLOUDS:"Clouds"
         });
         $translateProvider.translations('ru', {
+            SITES: 'Сайты',
             HOME: 'Главная',
             LOGIN: 'Вход',
             REGISTRATION: 'Регистрация',
@@ -138,7 +139,7 @@ siteApp.config([
             SORT:'Сортировать',
             BYDATE:'по дате',
             BYRATE:'по рейтингу',
-            VIEW_COMIX:'просмотреть комикс',
+            VIEW_SITE:'просмотреть сайт',
             COMMENTS:'Комментарии',
             USERNAME:'Имя пользователя',
             PASSWORD:'Пароль',
@@ -156,7 +157,7 @@ siteApp.config([
             LOGOUT:'Выход',
             FIRST_NAME:'Имя',
             LAST_NAME:'Фамилия',
-            EMAIL:'email',
+            EMAIL:'Почта',
             ABOUT:'О себе',
             EDIT_USER:'Редактировать профиль',
             SAVE:'Сохранить',
