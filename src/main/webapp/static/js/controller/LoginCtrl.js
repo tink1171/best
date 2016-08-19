@@ -4,7 +4,10 @@ siteApp.controller('LoginCtrl',[
         $scope.rememberMe = false;
 
         $scope.login = function() {
-            UserLoginService.authenticate($.param({username: $scope.username, password: $scope.password}), function(authenticationResult) {
+            UserLoginService.authenticate($.param(
+            {email: $scope.email,
+                password: $scope.password}),
+            function(authenticationResult) {
                 var authToken = authenticationResult.token;
                 $rootScope.authToken = authToken;
                 if ($scope.rememberMe) {
