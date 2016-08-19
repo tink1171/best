@@ -1,6 +1,5 @@
 package com.kp.configuration;
 
-import com.kp.model.model_of_user.ActiveUserStore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,10 +30,6 @@ public class AppConfig {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
 
-	@Bean
-	public ActiveUserStore activeUserStore(){
-		return new ActiveUserStore();
-	}
 
 	@Bean
 	public JavaMailSenderImpl javaMailSenderImpl() {

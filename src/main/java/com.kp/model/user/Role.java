@@ -1,4 +1,4 @@
-package com.kp.model.model_of_user;
+package com.kp.model.user;
 
 import javax.persistence.*;
 import java.util.Collection;

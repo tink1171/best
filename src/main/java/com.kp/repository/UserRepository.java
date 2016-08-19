@@ -1,6 +1,6 @@
 package com.kp.repository;
 
-import com.kp.model.model_of_user.User;
+import com.kp.model.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 
 public interface UserRepository extends JpaRepository <User, Long> {
-	User findByEmail(String email);
+	User findByEmail(String Email);
 
 	@Override
 	void delete(User user);

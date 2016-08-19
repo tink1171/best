@@ -1,9 +1,10 @@
+package com.kp.controller;/*
 package com.kp.controllers;
 
 import com.kp.dto.UserDto;
 import com.kp.errors.EmailExistsException;
 import com.kp.events.OnRegistrationCompleteEvent;
-import com.kp.model.model_of_user.User;
+import com.kp.model.user.User;
 import com.kp.model.verification_token.VerificationToken;
 import com.kp.repository.UserRepository;
 import com.kp.service.UserService;
@@ -27,9 +28,11 @@ import java.util.Calendar;
 import java.util.Locale;
 
 
+*/
 /**
  * Created by diman on 05.08.16.
- */
+ *//*
+
 @Controller
 public class RegistrationController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(RegistrationController.class);
@@ -130,3 +133,4 @@ public class RegistrationController {
 		return authentication.getName();
 	}
 }
+*/

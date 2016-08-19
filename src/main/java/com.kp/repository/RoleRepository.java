@@ -1,6 +1,6 @@
 package com.kp.repository;
 
-import com.kp.model.model_of_user.Role;
+import com.kp.model.user.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

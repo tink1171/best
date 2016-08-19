@@ -23,7 +23,7 @@ public class UserDto {
 	@ValidEmail
 	@NotNull
 	@NotEmpty
-	private String email;
+	private String Email;
 
 	@NotNull
 	@NotEmpty
@@ -50,11 +50,11 @@ public class UserDto {
 	}
 
 	public String getEmail() {
-		return email;
+		return Email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String Email) {
+		this.Email = Email;
 	}
 
 	public String getPassword() {
@@ -78,7 +78,7 @@ public class UserDto {
 		return "UserDto{" +
 						"firstName='" + firstName + '\'' +
 						", lastName='" + lastName + '\'' +
-						", email='" + email + '\'' +
+						", email='" + Email + '\'' +
 						", password='" + password + '\'' +
 						", matchingPassword='" + matchingPassword + '\'' +
 //						", role=" + role +

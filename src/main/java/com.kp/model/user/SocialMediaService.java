@@ -1,4 +1,4 @@
-package com.kp.model.model_of_user;
+package com.kp.model.user;
 
 /**
  * Created by diman on 12.08.16.

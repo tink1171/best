@@ -1,6 +1,6 @@
 package com.kp.model.verification_token;
 
-import com.kp.model.model_of_user.User;
+import com.kp.model.user.User;
 
 import javax.persistence.*;
 import java.util.Calendar;

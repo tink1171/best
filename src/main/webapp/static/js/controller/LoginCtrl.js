@@ -12,7 +12,8 @@ siteApp.controller('LoginCtrl',[
                 }
                 UserLoginService.get(function(user) {
                     $rootScope.user = user;
-                    $location.path("/user/"+user.name);
+                    $location.path("/");
+                    alert(user.email);
                 });
             });
         };

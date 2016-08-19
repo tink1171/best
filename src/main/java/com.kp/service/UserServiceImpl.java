@@ -3,7 +3,7 @@ package com.kp.service;
 import com.kp.dto.UserDto;
 import com.kp.errors.EmailExistsException;
 import com.kp.errors.UserAlreadyExistException;
-import com.kp.model.model_of_user.User;
+import com.kp.model.user.User;
 import com.kp.model.verification_token.VerificationToken;
 import com.kp.repository.RoleRepository;
 import com.kp.repository.UserRepository;
@@ -31,8 +31,14 @@ public class UserServiceImpl implements UserService {
 	private VerificationTokenRepository tokenRepository;
 
 	@Override
+	public User findByEmail(String Email){
+		User user = repository.findByEmail(Email);
+		return user;
+	}
+
+	@Override
 	public User registerNewUserAccount(UserDto accountDto) throws EmailExistsException {
-		if (emailExist(accountDto.getEmail())) {
+		if (EmailExist(accountDto.getEmail())) {
 			throw new UserAlreadyExistException("There is an account with that email adress: " + accountDto.getEmail());
 		}
 		final User user = new User();
@@ -68,8 +74,8 @@ public class UserServiceImpl implements UserService {
 		return tokenRepository.findByToken(VerificationToken);
 	}
 
-	private boolean emailExist(String email) {
-		User user = repository.findByEmail(email);
+	private boolean EmailExist(String Email) {
+		User user = repository.findByEmail(Email);
 		if (user != null) {
 			return true;
 		}

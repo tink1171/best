@@ -1,4 +1,4 @@
-package com.kp.model.model_of_user;
+package com.kp.model.user;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -67,8 +67,8 @@ public class User {
 		return email;
 	}
 
-	public void setEmail(final String username) {
-		this.email = username;
+	public void setEmail(final String Email) {
+		this.email = Email;
 	}
 
 	public String getPassword() {
@@ -132,7 +132,7 @@ public class User {
 //	@Override
 //	public String toString() {
 //		final StringBuilder builder = new StringBuilder();
-//		builder.append("User [firstName=").append(firstName).append("]").append("[lastName=").append(lastName).append("]").append("[username").append(email).append("]");
+//		builder.append("User [firstName=").append(firstName).append("]").append("[lastName=").append(lastName).append("]").append("[Email").append(email).append("]");
 //		return builder.toString();
 //	}
 

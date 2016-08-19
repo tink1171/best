@@ -1,6 +1,6 @@
 package com.kp.events;
 
-import com.kp.model.model_of_user.User;
+import com.kp.model.user.User;
 import org.springframework.context.ApplicationEvent;
 import java.util.Locale;
 /**

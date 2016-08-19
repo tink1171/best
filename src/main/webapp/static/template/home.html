@@ -1,0 +1,129 @@
+<div class="row row-offcanvas row-offcanvas-right ">
+
+	<div class="col-xs-6 col-sm-9 col-lg-9 ">
+
+		<div class="row" >
+				<div class="col-xs-12 col-sm-9 col-lg-9 sidebar-offcanvas" id="sidebar">
+					<h3 class="text-center">{{'SEARCH' | translate}}</h3>
+					<div class="list-group">
+						<div class=" input-group">
+							<form>
+								<input type="text" class="form-control" placeholder="{{'SEARCH' | translate}}..." ng-model="search">
+							</form>
+							<span class="input-group-btn">
+                              <button class="btn btn-default" type="button">{{'SEARCH' | translate}}</button>
+                          </span>
+						</div>
+					</div>
+				</div><!--/.sidebar-offcanvas-->
+		</div>
+
+		<hr>
+
+		<div class="row"  ng-controller="ComixListCtrl as ctrl">
+			<div class="row" infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
+				<div class="col-xs-4 col-sm-4 col-lg-4">
+					<span class="input-group-btn">
+						<button class="btn btn-success" type="button" ng-click="sortBy('date')">{{'BYDATE' | translate}}
+							<span class="glyphicon" ng-class="{'glyphicon-chevron-up': isSortUp('date'),
+															   'glyphicon-chevron-down':isSortDown('date')}">
+							</span>
+						</button>
+						<button class="btn btn-success" type="button" ng-click="sortBy('rate')">{{'BYRATE' | translate}}
+							<span class="glyphicon" ng-class="{'glyphicon-chevron-up': isSortUp('rate'),
+															   'glyphicon-chevron-down':isSortDown('rate')}">
+							</span>
+						</button>
+					</span>
+				</div>
+				<div ng-show='reddit.busy'>Loading data...</div>
+			</div>
+
+			<div infinite-scroll="loadMore()" infinite-scroll-distance='2' infinite-scroll-disabled='reddit.busy'>
+				<div class="col-xs-12 col-sm-9 col-lg-9 item thumbnail panel panel-body" ng-repeat="comix in ctrl.comics | filter: search | orderBy:sortField:reverse">
+					<div class="col-md-2 verticalhr">
+						<div class="row">
+							<img alt="{{comix.userName}}" src="{{comix.userAvatarUrl}}" class="img-circle" width="50px" height="50px"/>
+						</div>
+						<div class="row">
+							<a href="#/user/{{comix.userName}}" >{{comix.userName}}</a>
+						</div>
+					</div>
+
+					<div class="row">
+						<h2 align="center">{{comix.name}}</h2>
+						<div class="preview-img text-center">
+							<a href="#/comix/{{comix.id}}" >
+								<!--<img  ng-src="{{comix.pages[0].blocks[0].imageUrl}}" alt="{{comix.name}}"/>-->
+								<div class="row">
+									<img src="{{comix.pages[0].blocks[0].imageUrl}}" class="img-circle center-block image-container"/>
+								</div>
+							</a>
+						</div>
+					</div>
+
+					<div class="row">
+						<p class="text-center">{{comix.description}}</p>
+					</div>
+					<div class="row">
+						<p class="text-center">{{'RATE' | translate}}:{{comix.rate}}</p>
+					</div>
+
+					<div class="row">
+						<ul class="phone-thumbs list-unstyled">
+							<li ng-repeat="page in comix.pages">
+								<img ng-src="{{page.blocks[0].imageUrl}}" ng-click="setImage(img)">
+							</li>
+						</ul>
+					</div>
+
+					<hr>
+
+
+					<div class="row" >
+						<ul class="submenu">
+							<li ng-repeat="tag in comix.tags">
+								<a href="/searchbytag/{{tag.name}}"><span class="label label-default">{{tag.name}}</span></a>
+							</li>
+						</ul>
+					</div>
+
+					<div class="row" >
+						<a href="#/comix/{{comix.id}}">{{'COMMENTS' | translate}}:{{comix.comments.length}}</a>
+					</div>
+
+					<div class="row">
+						<p><a class="btn btn-primary" href="#/comix/{{comix.id}}" role="button">{{'VIEW_COMIX' | translate}}<span class="glyphicon glyphicon-chevron-right"></span></a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!--<div infinite-scroll="loadMore()" infinite-scroll-distance='2' infinite-scroll-disabled='reddit.busy'>-->
+
+	<!--<div class="col-xs-12 col-sm-9 col-lg-9 item thumbnail panel panel-body" ng-repeat="phone in phones | filter: search | orderBy:sortField:reverse">-->
+
+		<!--<div>-->
+			<!--<a href="#/users/{{phone.userId}}">{{phone.userId}}</a>-->
+		<!--</div>-->
+
+		<!--<h2 align="center">{{phone.name}}</h2>-->
+		<!--<div class="preview-img text-center">-->
+			<!--<a href="#/phones/{{phone.id}}" >-->
+				<!--<img  ng-src="{{phone.imageUrl}}" alt="{{phone.name}}"/>-->
+			<!--</a>-->
+		<!--</div>-->
+		<!--<p class="text-center">{{phone.snippet}}</p>-->
+		<!--<p class="text-center">Rate:{{phone.rate}}</p>-->
+		<!--<hr>-->
+
+		<!--<div class="comixRate" ng-mousemove="mouseMoveRate()" ng-mouseenter="mouseEnterRate()" ng-mouseleave="mouseMoveLive()" ng-click="mouseClickRate()">-->
+			<!--<div style="width: 60%"></div>-->
+		<!--</div>-->
+
+		<!--<p><a class="btn btn-primary" href="#/phones/{{phone.id}}" role="button">Show comix  <span class="glyphicon glyphicon-chevron-right"></span></a></p>-->
+	<!--</div>&lt;!&ndash;/.col-sm-6.col-lg-4&ndash;&gt;-->
+
+<!--</div>-->

@@ -1,4 +1,4 @@
-package com.kp.model.model_of_user;
+package com.kp.model.user;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.kp.listeners;
 
 import com.kp.events.OnRegistrationCompleteEvent;
-import com.kp.model.model_of_user.User;
+import com.kp.model.user.User;
 import com.kp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
@@ -45,10 +45,10 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
 		String subject = "Registration Confirmation";
 		String confirmationUrl = event.getAppUrl() + "/registrationConfirm.html?token=" + token;
 		String message = messages.getMessage("message.regSucc", null, event.getLocale());
-		SimpleMailMessage email = new SimpleMailMessage();
-		email.setTo(recipientAddress);
-		email.setSubject(subject);
-		email.setText(message + /*" rn" +*/ "http://localhost:8080" + confirmationUrl);
-		mailSender.send(email);
+		SimpleMailMessage Email = new SimpleMailMessage();
+		Email.setTo(recipientAddress);
+		Email.setSubject(subject);
+		Email.setText(message + /*" rn" +*/ "http://localhost:8080" + confirmationUrl);
+		mailSender.send(Email);
 	}
 }
