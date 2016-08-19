@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <title>Loftblog Angular Phonecat App</title>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/site_defoult.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/userProfile.css">
@@ -104,7 +104,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="${pageContext.request.contextPath}/static/bower_components/angular/angular.js"></script>
 <script src="${pageContext.request.contextPath}/static/bower_components/angular-route/angular-route.js"></script>
-<script src="${pageContext.request.contextPath}/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/static/bower_components/bootstrap/js/bootstrap.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/bower_components/angular-resource/angular-resource.js"></script>
 <script src="${pageContext.request.contextPath}/static/bower_components/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/bower_components/angular-resource/angular-resource.js"></script>
