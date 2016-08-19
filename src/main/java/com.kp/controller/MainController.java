@@ -1,10 +1,17 @@
 package com.kp.controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+import com.kp.transfer.UrlTransfer;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -29,4 +36,21 @@ public class MainController {
     public String foo(Map<String, Object> model) {
         throw new RuntimeException("Foo");
     }
+
+    @RequestMapping(value = "/image/", method = RequestMethod.POST)
+    public ResponseEntity<UrlTransfer> getAvatarImage(@RequestBody String file)
+    {
+        String url="";
+        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", "ddn3rvx8c",
+                "api_key", "174231233227927",
+                "api_secret", "deiKCXWmKj71V6ap9oHSZXo4E1k"));
+        try{
+            url= (String) cloudinary.uploader().upload(file,ObjectUtils.emptyMap()).get("url");
+        } catch (IOException e){
+            System.out.println(e);
+        }
+        return new ResponseEntity<UrlTransfer>(new UrlTransfer(url), HttpStatus.OK);
+    }
 }
+
