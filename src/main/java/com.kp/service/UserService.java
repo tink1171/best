@@ -15,4 +15,5 @@ public interface UserService {
 	User getUser(String verificationToken);
 	void saveRegisteredUser(User user);
 	VerificationToken getVerificationToken(String VerificationToken);
+	User findByUsername(String username);
 }
