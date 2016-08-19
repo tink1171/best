@@ -7,12 +7,13 @@ siteApp.controller('RegistrationCtrl',[
         $scope.rememberMe = true;
         $scope.register = function () {
             UserLoginService.register($.param({
-                username: $scope.username,
+                first_name: $scope.first_name,
+                last_name: $scope.last_name,
                 email: $scope.email,
                 password: $scope.password
             }), function () {
                 UserLoginService.authenticate($.param({
-                    username: $scope.username,
+                    username: $scope.email,
                     password: $scope.password
                 }), function (authenticationResult) {
                     var authToken = authenticationResult.token;

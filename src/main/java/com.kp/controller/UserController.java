@@ -59,17 +59,17 @@ public class UserController {
 
 
     @RequestMapping(value = "/user/authenticate", method = RequestMethod.POST)
-    public TokenTransfer authenticate(@FormParam("username") String username, @FormParam("password") String password, HttpServletRequest request) {
+    public TokenTransfer authenticate(@FormParam("email") String email, @FormParam("password") String password, HttpServletRequest request) {
 
         UsernamePasswordAuthenticationToken authenticationToken =
-                new UsernamePasswordAuthenticationToken(username, password);
+                new UsernamePasswordAuthenticationToken(email, password);
         Authentication authentication = this.authManager.authenticate(authenticationToken);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         setAuthentication(authentication);
         HttpSession session = request.getSession(true);
         session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
 
-        UserDetails userDetails = this.myUserDetailService.loadUserByUsername(username);
+        UserDetails userDetails = this.myUserDetailService.loadUserByUsername(email);
 
         return new TokenTransfer(TokenUtils.createToken(userDetails));
     }
