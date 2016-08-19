@@ -4,16 +4,16 @@ package com.kp.dto;
  * Created by diman on 10.08.16.
  */
 public class UserLoginDto {
-	private String email;
+	private String Email;
 	private String password;
 	private String matchingPassword;
 
 	public String getEmail() {
-		return email;
+		return Email;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String Email) {
+		this.Email = Email;
 	}
 
 	public String getMatchingPassword() {

@@ -1,4 +1,4 @@
-package com.kp.model.model_of_user;
+package com.kp.model.user;
 
 import org.springframework.stereotype.Component;
 
@@ -11,14 +11,14 @@ import java.util.List;
 @Component
 public class LoggedUser implements HttpSessionBindingListener {
 
-	private String username;
+	private String Email;
 	private ActiveUserStore activeUserStore;
 
 	public LoggedUser() {
 	}
 
-	public LoggedUser(String username, ActiveUserStore activeUserStore) {
-		this.username = username;
+	public LoggedUser(String Email, ActiveUserStore activeUserStore) {
+		this.Email = Email;
 		this.activeUserStore=activeUserStore;
 	}
 
@@ -27,8 +27,8 @@ public class LoggedUser implements HttpSessionBindingListener {
 		System.out.println(activeUserStore);
 		List<String> users = activeUserStore.getUsers();
 		LoggedUser user = (LoggedUser) event.getValue();
-		if (!users.contains(user.getUsername())) {
-			users.add(user.getUsername());
+		if (!users.contains(user.getEmail())) {
+			users.add(user.getEmail());
 		}
 	}
 
@@ -36,16 +36,16 @@ public class LoggedUser implements HttpSessionBindingListener {
 	public void valueUnbound(HttpSessionBindingEvent event) {
 		List<String> users = activeUserStore.getUsers();
 		LoggedUser user = (LoggedUser) event.getValue();
-		if (users.contains(user.getUsername())) {
-			users.remove(user.getUsername());
+		if (users.contains(user.getEmail())) {
+			users.remove(user.getEmail());
 		}
 	}
 
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return Email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String Email) {
+		this.Email = Email;
 	}
 }

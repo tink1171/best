@@ -13,10 +13,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/site_defoult.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/userProfile.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/angular-tagger/build/angular-tagger.css"/>
+
+
     <script src='//cdn.tinymce.com/4/tinymce.min.js'></script>
 
     <script src="${pageContext.request.contextPath}/static/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/bower_components/jquery-ui/jquery-ui.min.js"></script>
+
     <style type="text/css">
         #draggable, #droppable {font-size: large; border: thin solid black; padding: 10px;
             width: 100px; text-align: center; background-color: lightgray; margin: 4px;}
@@ -40,15 +45,21 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="#/">HOME</a></li>
-                <li ><a href="#/login">LOGIN</a></li>
-                <li ><a href="#/register">REGISTRATION</a></li>
-                <li ><a href="#/create-site">SITE</a></li>
+                <li class="active"><a href="#/">{{'HOME' | translate}}</a></li>
+                <li ng-show="!user"><a href="#/login">{{'LOGIN' | translate}}</a></li>
+                <li ng-show="!user" ><a href="#/register">{{'REGISTRATION' | translate}}</a></li>
+                <li ng-show="user"><a href="#/create-site">{{'CREATE_SITE' | translate}}</a></li>
+
+                <li ng-show="user">
+                    <a href="#/user/{{user.name}}">{{user.name}}</a>
+                </li>
+                <li ng-show="user">
+                    <a href="" ng-click="logout()"><span class="fa fa-sign-out"></span> {{'LOGOUT' | translate}}</a>
+                </li>
                 <li><a href="" ng-click="changeLanguage('ru')">ru</a></li>
                 <li><a href="" ng-click="changeLanguage('en')">en</a></li>
-
-
             </ul>
+
         </div>
     </div>
 </nav>
@@ -73,6 +84,7 @@
             }
         }
     </script>
+    <div class="alert alert-danger" ng-show="error">{{error}}</div>
 
     <ng-view></ng-view>
 
@@ -106,6 +118,9 @@
 <script src="${pageContext.request.contextPath}/static/js/controller/CreateSiteCtrl.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/controller/CreatePageCtrl.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/controller/LoginCtrl.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/controller/RegistrationCtrl.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/controller/UserEditCtrl.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/controller/UserProfileCtrl.js"></script>
 
 
 </body>

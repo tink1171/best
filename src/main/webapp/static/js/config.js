@@ -27,9 +27,21 @@ siteApp.config([
                 templateUrl:"static/template/login.html",
                 controller:'LoginCtrl'
             })
+        .when('/register', {
+            templateUrl: 'static/template/register.html',
+            controller: 'RegistrationCtrl'
+        })
         .when('/admin',{
             templateUrl:"static/template/admin.html",
                 controller:'AdminCtrl'
+        })
+        .when('/user/:userName', {
+            templateUrl: 'static/template/userprofile.html',
+            controller: 'UserProfileCtrl'
+        })
+        .when('/edituser/:userName', {
+            templateUrl: 'static/template/edituser.html',
+            controller: 'UserEditCtrl'
         })
         .otherwise({
             redirectTo : '/'
@@ -80,7 +92,7 @@ siteApp.config([
             HOME: 'Home',
             LOGIN: 'Login',
             REGISTRATION: 'Registration',
-            CREATE_COMIX:'Create comix',
+            CREATE_SITE:'Create site',
             USER_PROFILE:'User profile',
             SEARCH:'Search',
             SORT:'Sort by',
@@ -117,12 +129,10 @@ siteApp.config([
             CLOUDS:"Clouds"
         });
         $translateProvider.translations('ru', {
-            COMIX:'Комикс',
-            COMICS:'Комиксы',
             HOME: 'Главная',
             LOGIN: 'Вход',
             REGISTRATION: 'Регистрация',
-            CREATE_COMIX:'Создать комикс',
+            CREATE_SITE:'Создать сайт',
             USER_PROFILE:'Персональная страница',
             SEARCH:'Поиск',
             SORT:'Сортировать',

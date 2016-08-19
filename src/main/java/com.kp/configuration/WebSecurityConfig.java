@@ -21,6 +21,7 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.social.security.SocialUserDetailsService;
+import org.springframework.social.security.SpringSocialConfigurer;
 
 
 /**
@@ -34,9 +35,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private UserDetailsService userDetailsService;
-
-	@Autowired
-	private AuthenticationSuccessHandler authenticationSuccessHandler;
 
 	@Autowired
 	AuthenticationFailureHandler authenticationFailureHandler;
@@ -57,34 +55,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable()
-						.authorizeRequests()
-						.antMatchers("/login*","/login*","/users*","/console/**", "/logout", "/signin/**", "/signup/**","/connect/facebook",
-										"/registration*", "/registrationConfirm*", "/expiredAccount*", "/registration*",
-										"/badUser*", "/user/resendRegistrationToken*" ,"/forgetPassword*", "/user/resetPassword*",
-										"/user/changePassword*", "/emailError*", "/resources/**","/old/user/registration*","/successRegister*","/**").permitAll()
-						.antMatchers("/admin").hasAuthority("ROLE_ADMIN")
-						.anyRequest().authenticated()
-						.and()
-						.formLogin()
-						.loginPage("/login")
-						.defaultSuccessUrl("/succeslogin.html")
-						.successHandler(authenticationSuccessHandler)
-						.failureUrl("/error")
-						.failureHandler(authenticationFailureHandler)
-						.permitAll()
-						.and()
-						.logout()
-						.logoutUrl("/logout")
-						.logoutSuccessHandler(logoutSuccessHandler)
-						.invalidateHttpSession(false)
-						.deleteCookies("remember-me")
-						.deleteCookies("JSESSIONID")
-						.logoutSuccessUrl("/login")
-						.permitAll()
-						.and()
-						.rememberMe();
-		http.authorizeRequests()
-						.antMatchers("/**").permitAll();
+				//Configures form login
+				.formLogin()
+				.loginPage("/")
+				.loginProcessingUrl("/login")
+				.failureUrl("/login?error=bad_credentials")
+				//Configures the logout function
+				.and()
+				.logout()
+				.deleteCookies("JSESSIONID")
+				.logoutUrl("/logout")
+				.logoutSuccessUrl("/login")
+				//Configures url based authorization
+				.and()
+				.authorizeRequests()
+				//Anyone can access the urls
+				.antMatchers(
+						"/**",
+						"/login/**",
+						"/user",
+						"/register/**",
+						"/user/authenticate"
+				).permitAll();
+				//The rest of the our application is protected.
+				//Adds the SocialAuthenticationFilter to Spring Security's filter chain.
 	}
 
 //	@Bean

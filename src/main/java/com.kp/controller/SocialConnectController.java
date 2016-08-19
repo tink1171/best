@@ -1,4 +1,4 @@
-package com.kp.controllers;//package com.kp.controllers;
+package com.kp.controller;//package com.kp.controllers;
 //
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.social.connect.ConnectionRepository;

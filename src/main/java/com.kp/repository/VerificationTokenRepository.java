@@ -1,6 +1,6 @@
 package com.kp.repository;
 
-import com.kp.model.model_of_user.User;
+import com.kp.model.user.User;
 import com.kp.model.verification_token.VerificationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 

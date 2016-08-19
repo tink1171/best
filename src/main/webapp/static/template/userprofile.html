@@ -1,0 +1,213 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">{{user.username}}</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3 col-lg-3 " align="center">
+                            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
+                                 file="image" file-name="imageFileName" data-max-file-size="3">
+                                <img  ng-model="image" ng-src={{image}} src="{{user.avatarUrl}}" class="img-circle center-block image-container img-responsive"/>
+                            </div>
+                        </div>
+
+                        <div class=" col-md-9 col-lg-9 ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                <tr>
+                                    <td>{{'FIRST_NAME' | translate}}</td>
+                                    <td>
+                                        {{user.firstName}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{'LAST_NAME' | translate}}</td>
+                                    <td>
+                                        {{user.lastName}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{'EMAIL' | translate}}</td>
+                                    <td>
+                                        {{user.email}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{'ABOUT' | translate}}</td>
+                                    <td>
+                                        <p class="text-left">
+                                            {{user.about}}
+                                        </p>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <!--<a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>-->
+                        <!--<span >-->
+                            <a  href="#/edituser/{{user.username}}" ng-show="isRootUser()" data-original-title="{{'EDIT_USER | translate'}}" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                        <!--</span>-->
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div class="col-md-6">
+
+                        <div class="row panel panel-default">
+                            <div class="panel panel-body">
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-default btn-block" ng-click="showComics()">
+                                        {{'COMICS' | translate}}
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="button" class="btn btn-default btn-block" ng-click="showComments()">
+                                        {{'COMMENTS' | translate}}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" ng-show="isShowComics">
+
+                            <div class="col-md-12">
+                                <a href="#/create-comix">
+                                    <button type="button" ng-show="isRootUser() " class="btn btn-default btn-block">{{'CREATE_COMIX'}}</button>
+                                </a>
+                            </div>
+
+                            <div class="col-md-12">
+
+                                <div class="row">
+                                    <div class="col-md-6">
+
+                                        <button type="button" class="btn btn-sm btn-block">
+                                            {{'BYRATE' | translate}}
+                                        </button>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <button type="button" class="btn btn-block btn-sm">
+                                            {{'BYDATE' | translate}}
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="row" ng-repeat="comix in user.comics ">
+
+                                    <div class="row">
+                                        <div>
+                                            <a href="#/users/{{comix.user.username}}">{{comix.username}}</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <h2 align="center">{{comix.name}}</h2>
+                                        <div class="preview-img text-center">
+                                            <a href="#/comix/{{comix.id}}" >
+                                                <div class="row">
+                                                    <img src="{{comix.pages[0].blocks[0].imageUrl}}" class="img-circle center-block image-container"/>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <p class="text-center">{{comix.description}}</p>
+                                    </div>
+                                    <div class="row">
+                                        <p class="text-center">{{'RATE' | translate}}:{{comix.rate}}</p>
+                                    </div>
+
+                                    <div class="row">
+                                        <ul class="phone-thumbs list-unstyled">
+                                            <li ng-repeat="page in comix.pages">
+                                                <img ng-src="{{page.blocks[0].imageUrl}}" ng-click="setImage(img)">
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="row" >
+                                        <ul class="submenu">
+                                            <li ng-repeat="tag in comix.tags">
+                                                <a href="/searchbytag/{{tag.name}}"><span class="label label-default">{{tag.name}}</span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="row" >
+                                        <a href="#/comix/{{comix.id}}">{{'COMMENTS' | translate}}:{{comix.comments.length}}</a>
+                                    </div>
+
+                                    <div class="row">
+                                        <p><a class="btn btn-primary" href="#/comix/{{comix.id}}" role="button">{{'VIEW_COMIX' | translate}}<span class="glyphicon glyphicon-chevron-right"></span></a></p>
+                                    </div>
+                                </div>
+                                </div>
+                        </div>
+
+                        <div class="row" ng-show="isShowComments">
+
+                            <div class="row"  ng-repeat="com in user.comments track by $index">
+                                <div class=" panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="col-md-2 verticalhr">
+                                            <div class="row">
+                                                <img alt="{{com.userName}}" src="{{com.userAvatarUrl}}" class="img-circle" width="50px" height="50px"/>
+                                            </div>
+                                            <div class="row">
+                                                <a href="#/user/{{com.userName}}" >{{com.userName}}</a>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-10 panel-body">
+                                            <h4>{{com.text}}</h4>
+                                        </div>
+                                        <div class="pull-right">
+                                            {{com.creationTime}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <form ng-submit="addComment()" ng-show="hasRole('USER')" name="myForm" type="POST">
+                                <div class="input-group">
+                                    <div class="input-group-btn">
+                                        <button ng-click="" type="submit" class="btn btn-default">
+                                            <i class="glyphicon glyphicon-share"></i>
+                                        </button>
+                                    </div>
+                                    <input type="text" ng-model="comment.text" class="form-control">
+                                </div>
+                            </form>
+
+                        </div>
+
+                        <div class="col-md-3">
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
