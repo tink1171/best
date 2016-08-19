@@ -12,20 +12,21 @@ siteApp.controller('RegistrationCtrl',[
                 email: $scope.email,
                 password: $scope.password
             }), function () {
-                UserLoginService.authenticate($.param({
-                    username: $scope.email,
-                    password: $scope.password
-                }), function (authenticationResult) {
-                    var authToken = authenticationResult.token;
-                    $rootScope.authToken = authToken;
-                    if ($scope.rememberMe) {
-                        $cookieStore.put('authToken', authToken);
-                    }
-                    UserLoginService.get(function (user) {
-                        $rootScope.user = user;
-                        $location.path("/user/" + user.name);
-                    });
-                });
+                $scope.confirm_email = true;
+                // UserLoginService.authenticate($.param({
+                //     username: $scope.email,
+                //     password: $scope.password
+                // }), function (authenticationResult) {
+                //     var authToken = authenticationResult.token;
+                //     $rootScope.authToken = authToken;
+                //     if ($scope.rememberMe) {
+                //         $cookieStore.put('authToken', authToken);
+                //     }
+                //     UserLoginService.get(function (user) {
+                //         $rootScope.user = user;
+                //         $location.path("/user/" + user.name);
+                //     });
+                // });
             })
         };
         $scope.reset = function () {

@@ -72,8 +72,8 @@
                         <div class="row panel panel-default">
                             <div class="panel panel-body">
                                 <div class="col-md-6">
-                                    <button type="button" class="btn btn-default btn-block" ng-click="showComics()">
-                                        {{'COMICS' | translate}}
+                                    <button type="button" class="btn btn-default btn-block" ng-click="showSites()">
+                                        {{'SITES' | translate}}
                                     </button>
                                 </div>
                                 <div class="col-md-6">
@@ -84,10 +84,10 @@
                             </div>
                         </div>
 
-                        <div class="row" ng-show="isShowComics">
+                        <div class="row" ng-show="isShowSites">
 
                             <div class="col-md-12">
-                                <a href="#/create-comix">
+                                <a href="#/create-site">
                                     <button type="button" ng-show="isRootUser() " class="btn btn-default btn-block">{{'CREATE_COMIX'}}</button>
                                 </a>
                             </div>
@@ -109,35 +109,35 @@
                                     </div>
                                 </div>
 
-                                <div class="row" ng-repeat="comix in user.comics ">
+                                <div class="row" ng-repeat="site in user.sites ">
 
                                     <div class="row">
                                         <div>
-                                            <a href="#/users/{{comix.user.username}}">{{comix.username}}</a>
+                                            <a href="#/users/{{site.user.username}}">{{site.username}}</a>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <h2 align="center">{{comix.name}}</h2>
+                                        <h2 align="center">{{site.name}}</h2>
                                         <div class="preview-img text-center">
-                                            <a href="#/comix/{{comix.id}}" >
+                                            <a href="#/site/{{site.id}}" >
                                                 <div class="row">
-                                                    <img src="{{comix.pages[0].blocks[0].imageUrl}}" class="img-circle center-block image-container"/>
+                                                    <img src="{{site.pages[0].blocks[0].imageUrl}}" class="img-circle center-block image-container"/>
                                                 </div>
                                             </a>
                                         </div>
                                     </div>
 
                                     <div class="row">
-                                        <p class="text-center">{{comix.description}}</p>
+                                        <p class="text-center">{{site.description}}</p>
                                     </div>
                                     <div class="row">
-                                        <p class="text-center">{{'RATE' | translate}}:{{comix.rate}}</p>
+                                        <p class="text-center">{{'RATE' | translate}}:{{site.rate}}</p>
                                     </div>
 
                                     <div class="row">
                                         <ul class="phone-thumbs list-unstyled">
-                                            <li ng-repeat="page in comix.pages">
+                                            <li ng-repeat="page in site.pages">
                                                 <img ng-src="{{page.blocks[0].imageUrl}}" ng-click="setImage(img)">
                                             </li>
                                         </ul>
@@ -147,18 +147,18 @@
 
                                     <div class="row" >
                                         <ul class="submenu">
-                                            <li ng-repeat="tag in comix.tags">
+                                            <li ng-repeat="tag in site.tags">
                                                 <a href="/searchbytag/{{tag.name}}"><span class="label label-default">{{tag.name}}</span></a>
                                             </li>
                                         </ul>
                                     </div>
 
                                     <div class="row" >
-                                        <a href="#/comix/{{comix.id}}">{{'COMMENTS' | translate}}:{{comix.comments.length}}</a>
+                                        <a href="#/site/{{site.id}}">{{'COMMENTS' | translate}}:{{site.comments.length}}</a>
                                     </div>
 
                                     <div class="row">
-                                        <p><a class="btn btn-primary" href="#/comix/{{comix.id}}" role="button">{{'VIEW_COMIX' | translate}}<span class="glyphicon glyphicon-chevron-right"></span></a></p>
+                                        <p><a class="btn btn-primary" href="#/site/{{site.id}}" role="button">{{'VIEW_COMIX' | translate}}<span class="glyphicon glyphicon-chevron-right"></span></a></p>
                                     </div>
                                 </div>
                                 </div>

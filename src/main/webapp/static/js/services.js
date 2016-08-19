@@ -139,3 +139,20 @@ siteApp.factory('UserService', ['$http', '$q', function($http, $q){
     };
 
 }]);
+
+siteApp.factory('ImageUrlService',['$http', '$q', function($http, $q) {
+    return{
+        getImageUrl: function (base64) {
+            return $http.post('/image/',base64).then(
+                function(response){
+                    return response.data;
+                },
+                function(errResponse){
+                    console.error('Error while fetching tags');
+                    return $q.reject(errResponse);
+                }
+            )
+        }
+    }
+}]);
+
