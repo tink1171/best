@@ -65,25 +65,7 @@
 </nav>
 
 <div class="container" style="margin-top: 100px">
-    <script type="text/javascript">
-        function validate() {
-            if (document.f.email.value == "" && document.f.password.value == "") {
-                alert("${noUser} and ${noPass}");
-                document.f.username.focus();
-                return false;
-            }
-            if (document.f.email.value == "") {
-                alert("${noUser}");
-                document.f.username.focus();
-                return false;
-            }
-            if (document.f.password.value == "") {
-                alert("${noPass}");
-                document.f.password.focus();
-                return false;
-            }
-        }
-    </script>
+
     <div class="alert alert-danger" ng-show="error">{{error}}</div>
 
     <ng-view></ng-view>
