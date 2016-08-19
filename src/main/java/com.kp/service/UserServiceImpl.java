@@ -37,6 +37,12 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public 	User findByUsername(String username){
+		User user = repository.findByUsername(username);
+		return user;
+	}
+
+	@Override
 	public User registerNewUserAccount(UserDto accountDto) throws EmailExistsException {
 		if (EmailExist(accountDto.getEmail())) {
 			throw new UserAlreadyExistException("There is an account with that email adress: " + accountDto.getEmail());

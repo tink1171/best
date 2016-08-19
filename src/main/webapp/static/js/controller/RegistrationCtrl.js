@@ -7,6 +7,7 @@ siteApp.controller('RegistrationCtrl',[
         $scope.rememberMe = true;
         $scope.register = function () {
             UserLoginService.register($.param({
+                user_name: $scope.user_name,
                 first_name: $scope.first_name,
                 last_name: $scope.last_name,
                 email: $scope.email,

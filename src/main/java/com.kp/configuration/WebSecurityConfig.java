@@ -47,10 +47,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService);
 	}
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);
-	}
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.userDetailsService(userDetailsService);
+//	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -94,10 +94,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //		return authProvider;
 //	}
 
-//	@Override
-//	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth
-//						.userDetailsService(userDetailsService)
-//						.passwordEncoder(new BCryptPasswordEncoder());
-//	}
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth
+						.userDetailsService(userDetailsService)
+						.passwordEncoder(new BCryptPasswordEncoder(10));
+	}
 }

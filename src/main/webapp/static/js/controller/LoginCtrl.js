@@ -5,7 +5,7 @@ siteApp.controller('LoginCtrl',[
 
         $scope.login = function() {
             UserLoginService.authenticate($.param(
-            {email: $scope.email,
+            {userName: $scope.userName,
                 password: $scope.password}),
             function(authenticationResult) {
                 var authToken = authenticationResult.token;
@@ -16,7 +16,7 @@ siteApp.controller('LoginCtrl',[
                 UserLoginService.get(function(user) {
                     $rootScope.user = user;
                     $location.path("/");
-                    alert(user.email);
+                    alert(user.userName);
                 });
             });
         };
