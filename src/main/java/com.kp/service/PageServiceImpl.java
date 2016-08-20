@@ -1,12 +1,10 @@
 package com.kp.service;
 
-import com.kp.model.Page;
+import com.kp.model.site.Page;
 import com.kp.repository.PageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.xml.ws.ServiceMode;
 
 /**
  * Created by user on 8/12/16.

@@ -1,5 +1,7 @@
 package com.kp.model.user;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -14,6 +16,7 @@ public class Role {
 	private Long id;
 
 	@ManyToMany(mappedBy = "roles")
+	@JsonManagedReference
 	private Collection<User> users;
 
 //	@ManyToMany

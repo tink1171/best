@@ -1,5 +1,7 @@
 package com.kp.model.user;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Collection;
 /**
@@ -13,7 +15,12 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
+	@Column(name="avatar_url")
+	private String avatarUrl;
+
+
 	@Column(name = "firstname")
+
 	private String firstName;
 
 	@Column(name = "lastname")
@@ -35,6 +42,7 @@ public class User {
 
 	@ManyToMany
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+	@JsonBackReference
 	private Collection<Role> roles;
 
 	public User() {
@@ -84,6 +92,14 @@ public class User {
 
 	public String getPassword() {
 		return password;
+	}
+
+	public String getAvatarUrl() {
+		return avatarUrl;
+	}
+
+	public void setAvatarUrl(String avatarUrl) {
+		this.avatarUrl = avatarUrl;
 	}
 
 	public void setPassword(final String password) {
