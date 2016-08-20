@@ -4,7 +4,12 @@
 
 siteApp.controller('CreateSiteCtrl', ['$scope','$http', function( $scope, $http) {
 
-    var site = {};
+    $scope.tags = [];
+
+    $scope.pages=[];
+    $scope.name='';
+    $scope.description='';
+    $scope.site = {};
 
 
 

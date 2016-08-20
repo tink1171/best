@@ -116,21 +116,13 @@ public class UserController {
             return new ResponseEntity<Void>(HttpStatus.CONFLICT);
         }
 
-        LOGGER.error("FIRSTNAME : " + user_name );
-
-        if(user != null){
-//            throw new UserAlreadyExistException(" User with this email already exists :" + email);
-            System.out.println("A User with name " + user.getEmail() + " already exist");
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-        }
-
         User registered = new User();
 
         registered.setFirstName(first_name);
         registered.setLastName(last_name);
         registered.setUsername(user_name);
         registered.setEmail(email);
-        //registered.setEnabled(true);
+        registered.setAvatarUrl("http://i1.wp.com/wp-kama.ru/wp-content/themes/wp-kama/img/no_ava.png");
         registered.setPassword(password);
         registered.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
         userService.saveRegisteredUser(registered);
@@ -144,12 +136,6 @@ public class UserController {
             //return new ModelAndView("registration", "user", accountDto);
         }
 
-//        user=new User(username,passwordEncoder.encode(password));
-//        user.setAvatarUrl("http://lorempixel.com/300/300/");
-//        user.setEmail(email);
-//        user.addRole(Role.USER);
-//        UserService.saveUser(user);
-
         return new ResponseEntity<Void>(HttpStatus.CREATED);
     }
 
@@ -157,8 +143,8 @@ public class UserController {
     public UserTransfer getUser()
     {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        //Object principal = authentication.getPrincipal();
-        Object principal = getAuthentication().getPrincipal();
+        Object principal = authentication.getPrincipal();
+        //Object principal = getAuthentication().getPrincipal();
         if (principal instanceof String && (principal).equals("anonymousUser")) {
             throw new WebApplicationException(401);
         }

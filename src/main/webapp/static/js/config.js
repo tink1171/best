@@ -7,6 +7,11 @@ siteApp.config([
         });
 
     $routeProvider
+        .when('/',
+            {
+                templateUrl:"static/template/home.html",
+                controller:'SiteListCtrl'
+            })
         .when('/create-site',
             {
                 templateUrl:"static/template/create-site.html",
@@ -200,14 +205,13 @@ siteApp.config([
     };
 
     /* Try getting valid user from cookie or go to login page */
-    var originalPath = $location.path();
     $location.path("/login");
     var authToken = $cookieStore.get('authToken');
     if (authToken !== undefined) {
         $rootScope.authToken = authToken;
         UserLoginService.get(function (user) {
             $rootScope.user = user;
-            $location.path(originalPath);
+            $location.path("/");
         });
     }
 

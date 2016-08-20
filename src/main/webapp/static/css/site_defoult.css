@@ -25,11 +25,18 @@
     min-height: 380px;
 }
 
-.rectangle {
+.rectangle_horizontal {
     float:left ;
     border: 1px solid #3c3c3c;
     width: 778px;
-    min-height: 350px;
+    min-height: 380px;
+}
+
+.rectangle_vertical {
+    float:left ;
+    border: 1px solid #3c3c3c;
+    width: 389px;
+    min-height: 760px;
 }
 
 .draggable{

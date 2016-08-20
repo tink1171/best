@@ -111,8 +111,8 @@ siteApp.factory('UserService', ['$http', '$q', function($http, $q){
                     }
                 );
         },
-        addNewComix: function(user, id){
-            return $http.put('/user/createcomix'+id, user)
+        addNewSite: function(user, id){
+            return $http.put('/user/createsite'+id, user)
                 .then(
                     function(response){
                         return response.data;
@@ -154,5 +154,79 @@ siteApp.factory('ImageUrlService',['$http', '$q', function($http, $q) {
             )
         }
     }
+}]);
+
+siteApp.factory('SiteService', ['$http', '$q', function($http, $q){
+
+    return {
+
+        fetchAllSites: function() {
+            return $http.get('/site/')
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while fetching users');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        getSiteById: function(siteId){
+            return $http.get('/site/'+siteId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while getting user');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        createSite: function(site){
+            return $http.post('/site/', site)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while creating user');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        updateSite: function(site, id){
+            console.log(site);
+            return $http.put('/site/'+id, site)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while updating user');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        deleteSite: function(id){
+            return $http.delete('/site/'+id)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while deleting user');
+                        return $q.reject(errResponse);
+                    }
+                );
+        }
+
+    };
+
 }]);
 
