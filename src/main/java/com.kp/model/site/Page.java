@@ -1,4 +1,4 @@
-package com.kp.model;
+package com.kp.model.site;
 
 
 import javax.persistence.*;

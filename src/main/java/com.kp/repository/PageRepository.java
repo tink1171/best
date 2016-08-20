@@ -1,6 +1,6 @@
 package com.kp.repository;
 
-import com.kp.model.Page;
+import com.kp.model.site.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

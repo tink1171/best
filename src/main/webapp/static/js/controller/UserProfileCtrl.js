@@ -9,7 +9,7 @@
          $scope.userid = null;
          $scope.comment = nullcomment;
          $scope.user={};
-         $scope.isShowComics=true;
+         $scope.isShowSites=true;
          $scope.isShowComments=false;
 
          console.log($scope.image);
@@ -63,13 +63,13 @@
              }
          };
 
-         $scope.showComics = function(){
-             $scope.isShowComics=true;
+         $scope.showSites = function(){
+             $scope.isShowSites=true;
              $scope.isShowComments=false;
          };
 
          $scope.showComments = function(){
-             $scope.isShowComics=false;
+             $scope.isShowSites=false;
              $scope.isShowComments=true;
              $scope.updateCommentsUsersAvatars();
          }

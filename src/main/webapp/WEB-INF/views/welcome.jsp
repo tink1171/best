@@ -103,6 +103,7 @@
 <script src="${pageContext.request.contextPath}/static/js/controller/RegistrationCtrl.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/controller/UserEditCtrl.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/controller/UserProfileCtrl.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/controller/SiteListCtrl.js"></script>
 
 
 </body>

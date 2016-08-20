@@ -7,7 +7,7 @@ siteApp.controller('UserEditCtrl',[
         $scope.userid = null;
         $scope.user={};
 
-        UserService.getUserByName($routeParams.id).then(function(data){
+        UserService.getUserByName($routeParams.userName).then(function(data){
             $scope.user=data;
         });
 
