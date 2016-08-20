@@ -40,7 +40,7 @@ siteApp.controller('SiteListCtrl', ['$scope', 'SiteService', function($scope, Si
                         console.log(item);
                         }
                     );
-                    alert(self.sites);
+
                 },
                 function(errResponse){
                     console.error('Error while fetching Currencies');
