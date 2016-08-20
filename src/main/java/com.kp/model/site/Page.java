@@ -4,7 +4,7 @@ package com.kp.model.site;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "page")
+//@Table(name = "page")
 public class Page {
 
     @Id

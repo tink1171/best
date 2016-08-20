@@ -94,7 +94,7 @@ public class UserController {
         setAuthentication(authentication);
         HttpSession session = request.getSession(true);
         session.setAttribute("SPRING_SECURITY_CONTEXT", SecurityContextHolder.getContext());
-        LOGGER.error("FIRSTNAME : " + userName);
+        LOGGER.error("FIRSTNAME : " + userName + password );
 
         UserDetails userDetails = this.myUserDetailService.loadUserByUsername(userName);
 

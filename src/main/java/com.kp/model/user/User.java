@@ -38,7 +38,7 @@ public class User {
 	@Column(name = "enabled")
 	private boolean enabled;
 
-	private SocialMediaService signInProvider;
+	//private SocialMediaService signInProvider;
 
 	@ManyToMany
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
@@ -130,13 +130,13 @@ public class User {
 		return result;
 	}
 
-	public SocialMediaService getSignInProvider() {
-		return signInProvider;
-	}
+//	public SocialMediaService getSignInProvider() {
+//		return signInProvider;
+//	}
 
-	public void setSignInProvider(SocialMediaService signInProvider) {
-		this.signInProvider = signInProvider;
-	}
+//	public void setSignInProvider(SocialMediaService signInProvider) {
+//		this.signInProvider = signInProvider;
+//	}
 
 	@Override
 	public boolean equals(final Object obj) {
@@ -174,8 +174,8 @@ public class User {
 						", email='" + email + '\'' +
 						", password='" + password + '\'' +
 						", enabled=" + enabled +
-						", signInProvider=" + signInProvider +
+						//", signInProvider=" +/* signInProvider +*/
 						", roles=" + roles +
-						'}';
+						'}'+"\n";
 	}
 }
