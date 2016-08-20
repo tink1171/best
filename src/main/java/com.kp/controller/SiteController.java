@@ -52,7 +52,7 @@ public class SiteController {
     @RequestMapping(value = "/pages", method = RequestMethod.GET)
     @ResponseBody
     public String showpages(){
-        return repository.findAll().toString();
+        return siteService.findAllSites().toString();
     }
 
 

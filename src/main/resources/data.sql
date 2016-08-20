@@ -15,6 +15,14 @@ INSERT INTO users_roles(user_id, role_id)
 VALUES ('2', '1');
 
 
+INSERT INTO site(username, site_name, description , site_logo_url)
+VALUES ('volina', 'vadik', 'vadik pizdati','https://pp.vk.me/c623719/v623719151/4a61b/hVzcAMWD8SU.jpg');
+
+INSERT INTO site(username, site_name, description , site_logo_url)
+VALUES ('volina', 'vadik', 'vadik pizdati','https://pp.vk.me/c623719/v623719151/4a61b/hVzcAMWD8SU.jpg');
+
+INSERT INTO site(username, site_name, description , site_logo_url)
+VALUES ('volina', 'vadik', 'vadik pizdati','https://pp.vk.me/c623719/v623719151/4a61b/hVzcAMWD8SU.jpg');
 
 INSERT INTO site(username, site_name, description , site_logo_url)
 VALUES ('volina', 'vadik', 'vadik pizdati','https://pp.vk.me/c623719/v623719151/4a61b/hVzcAMWD8SU.jpg');

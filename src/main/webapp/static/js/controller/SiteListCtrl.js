@@ -38,7 +38,9 @@ siteApp.controller('SiteListCtrl', ['$scope', 'SiteService', function($scope, Si
                     self.sites = d;
                     self.sites.forEach(function(item,i,arr){
                         console.log(item);
-                    })
+                        }
+                    );
+                    alert(self.sites);
                 },
                 function(errResponse){
                     console.error('Error while fetching Currencies');
@@ -101,5 +103,6 @@ siteApp.controller('SiteListCtrl', ['$scope', 'SiteService', function($scope, Si
         self.site=nullsite;
         $scope.myForm.$setPristine(); //reset Form
     };
+
 
 }]);

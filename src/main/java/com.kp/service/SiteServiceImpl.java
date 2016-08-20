@@ -17,6 +17,7 @@ import java.util.List;
 @Transactional
 public class SiteServiceImpl implements SiteService {
 
+    @Autowired
     private SiteRepository repository;
 
     public Site findById(long id) {
@@ -44,8 +45,7 @@ public class SiteServiceImpl implements SiteService {
     }
 
     public List<Site> findAllSites() {
-        return repository.findAll();
-    }
+        return repository.findAll(); }
 
     public void deleteAllSites() {
         repository.deleteAll();
