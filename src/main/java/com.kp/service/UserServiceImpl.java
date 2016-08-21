@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by diman on 15.08.16.
@@ -86,5 +87,33 @@ public class UserServiceImpl implements UserService {
 			return true;
 		}
 		return false;
+	}
+
+	public List<User> findAllUsers() {
+		return repository.findAll();
+	}
+
+	public User findById(long id) {
+		return repository.findById(id);
+	}
+
+	public void saveUser(User user) {
+		repository.save(user);
+	}
+
+	public void updateUser(User user) {
+		repository.save(user);
+	}
+
+	public void deleteUserById(long id) {
+		repository.delete(id);
+	}
+
+	public boolean isUserExist(User user) {
+		return (repository.findByUsername(user.getUsername())!=null);
+	}
+
+	public void deleteAllUsers(){
+		repository.deleteAll();
 	}
 }

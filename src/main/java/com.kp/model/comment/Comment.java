@@ -9,12 +9,13 @@ import java.util.Date;
 /**
  * Created by alex on 5/5/2016.
  */
+
+
 @Entity
 @Table(name = "comment")
 public class Comment implements BaseEntity{
 
     @Id
-    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
@@ -103,4 +104,14 @@ public class Comment implements BaseEntity{
         this.userAvatarUrl = userAvatarUrl;
     }
 
+    @Override
+    public String toString() {
+        return "Comment{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userAvatarUrl='" + userAvatarUrl + '\'' +
+                ", creationTime='" + creationTime + '\'' +
+                '}';
+    }
 }

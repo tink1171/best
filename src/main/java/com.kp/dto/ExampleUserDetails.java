@@ -1,18 +1,13 @@
 package com.kp.dto;
 
 import com.kp.model.user.Role;
-import com.kp.model.user.SocialMediaService;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.social.security.SocialUser;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-/**
- * Created by diman on 15.08.16.
- */
 public class ExampleUserDetails extends SocialUser {
 
 	private Long id;
@@ -23,21 +18,19 @@ public class ExampleUserDetails extends SocialUser {
 
 	private String lastName;
 
-	private Set<Role> roles;
+	private Collection<Role> roles;
 
-	public Set<Role> getRoles() {
+	public Collection<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(Set<Role> roles) {
+	public void setRoles(Collection<Role> roles) {
 		this.roles = roles;
 	}
 
-	private SocialMediaService socialSignInProvider;
 
 	public ExampleUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, authorities);
-		roles = new HashSet<Role>();
 	}
 
 	public static Builder getBuilder() {
@@ -56,9 +49,6 @@ public class ExampleUserDetails extends SocialUser {
 		return lastName;
 	}
 
-	public SocialMediaService getSocialSignInProvider() {
-		return socialSignInProvider;
-	}
 
 	public String getAvatarUrl() {
 		return avatarUrl;
@@ -68,6 +58,16 @@ public class ExampleUserDetails extends SocialUser {
 		this.avatarUrl = avatarUrl;
 	}
 
+	@Override
+	public String toString() {
+		return new ToStringBuilder(this)
+				.append("id", id)
+				.append("username", getUsername())
+				.append("firstName", firstName)
+				.append("lastName", lastName)
+				.append("roles", roles)
+				.toString();
+	}
 
 	public static class Builder {
 
@@ -83,9 +83,7 @@ public class ExampleUserDetails extends SocialUser {
 
 		private String password;
 
-		private Set<Role> roles;
-
-		private SocialMediaService socialSignInProvider;
+		private Collection<Role> roles;
 
 		private Set<GrantedAuthority> authorities;
 
@@ -122,7 +120,7 @@ public class ExampleUserDetails extends SocialUser {
 			return this;
 		}
 
-		public Builder roles(Set<Role> roles) {
+		public Builder roles(Collection<Role> roles) {
 			this.roles = roles;
 
 			SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roles.toString());
@@ -131,10 +129,6 @@ public class ExampleUserDetails extends SocialUser {
 			return this;
 		}
 
-		public Builder socialSignInProvider(SocialMediaService socialSignInProvider) {
-			this.socialSignInProvider = socialSignInProvider;
-			return this;
-		}
 
 		public Builder username(String username) {
 			this.username = username;
@@ -149,7 +143,6 @@ public class ExampleUserDetails extends SocialUser {
 			user.firstName = firstName;
 			user.lastName = lastName;
 			user.roles = roles;
-			user.socialSignInProvider = socialSignInProvider;
 
 			return user;
 		}

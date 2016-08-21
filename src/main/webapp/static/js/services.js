@@ -100,7 +100,7 @@ siteApp.factory('UserService', ['$http', '$q', function($http, $q){
         },
 
         updateUser: function(user, id){
-            return $http.put('/user/'+id, user)
+            return $http.post('/user/'+id, user)
                 .then(
                     function(response){
                         return response.data;

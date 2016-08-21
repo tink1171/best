@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
@@ -125,6 +125,7 @@
 <script src="${pageContext.request.contextPath}/static/js/controller/UserEditCtrl.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/controller/UserProfileCtrl.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/controller/SiteListCtrl.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/controller/EditSiteCtrl.js"></script>
 
 
 </body>

@@ -3,9 +3,12 @@ package com.kp.controller;
 import com.kp.model.site.Page;
 
 import com.kp.model.site.Site;
+import com.kp.model.user.User;
 import com.kp.repository.PageRepository;
+import com.kp.repository.UserRepository;
 import com.kp.service.PageService;
 import com.kp.service.SiteService;
+import com.kp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -32,6 +35,9 @@ public class SiteController {
     @Autowired
     SiteService siteService;
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/page", method = RequestMethod.POST)
     public @ResponseBody String savePage(@RequestBody String page) {
         return "JSON: The company name: Headoffice";
@@ -43,10 +49,27 @@ public class SiteController {
     }
 
     @RequestMapping(value = "/savecompany_json", method = RequestMethod.POST)
-    public  @ResponseBody Page saveCompany_JSON(@RequestBody Page page )   {
+    public  @ResponseBody User saveCompany_JSON(@RequestBody User user )   {
 
-        pageService.savePage(page);
-        return page;
+        return user;
+    }
+
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
+    public @ResponseBody ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
+        System.out.println("Updating User " + id);
+
+        User currentUser = userService.findById(id);
+
+        if (currentUser==null) {
+            System.out.println("User with id " + id + " not found");
+            return new ResponseEntity<User>(HttpStatus.NOT_FOUND);
+        }
+
+        userService.updateUser(user);
+
+        currentUser = userService.findById(id);
+
+        return new ResponseEntity<User>(currentUser, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/pages", method = RequestMethod.GET)
@@ -98,7 +121,7 @@ public class SiteController {
     }
 
     @RequestMapping(value = "/site/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<Site> updateSite(@PathVariable("id") long id, @RequestBody Site site) {
+    public @ResponseBody  ResponseEntity<Site> updateSite(@PathVariable("id") long id, @RequestBody Site site) {
 
         Site currentSite = siteService.findById(id);
 

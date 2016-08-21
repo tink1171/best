@@ -3,6 +3,7 @@ package com.kp.controller;
 import com.kp.dto.ExampleUserDetails;
 import com.kp.errors.UserAlreadyExistException;
 import com.kp.events.OnRegistrationCompleteEvent;
+import com.kp.model.site.Site;
 import com.kp.model.user.User;
 import com.kp.model.verification_token.VerificationToken;
 import com.kp.repository.RoleRepository;
@@ -143,15 +144,16 @@ public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public UserTransfer getUser()
     {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Object principal = authentication.getPrincipal();
-        //Object principal = getAuthentication().getPrincipal();
-        if (principal instanceof String && (principal).equals("anonymousUser")) {
-            throw new WebApplicationException(401);
-        }
-        UserDetails userDetails = (UserDetails) principal;
-        //ExampleUserDetails userDetails = (ExampleUserDetails) principal;
-        return new UserTransfer(userDetails.getUsername());
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        Object principal = authentication.getPrincipal();
+//        //Object principal = getAuthentication().getPrincipal();
+//        if (principal instanceof String && (principal).equals("anonymousUser")) {
+//            throw new WebApplicationException(401);
+//        }
+//        UserDetails userDetails = (UserDetails) principal;
+//        //ExampleUserDetails userDetails = (ExampleUserDetails) principal;
+        User loggedUser = userService.findByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
+        return new UserTransfer(loggedUser.getId(),loggedUser.getAvatarUrl(),loggedUser.getUsername(),loggedUser.getRoles());
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
@@ -201,6 +203,8 @@ public class UserController {
         }
         return new ResponseEntity<User>(user, HttpStatus.OK);
     }
+
+
 }
 
 

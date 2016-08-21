@@ -7,28 +7,28 @@ siteApp.config([
         });
 
     $routeProvider
-        .when('/',
-            {
+        .when('/', {
                 templateUrl:"static/template/home.html",
                 controller:'SiteListCtrl'
             })
-        .when('/create-site',
-            {
-                templateUrl:"static/template/create-site.html",
+        .when('/create-site', {
+                templateUrl:"static/template/createsite.html",
                 controller:'CreateSiteCtrl'
+            })
+        .when('/edit-site', {
+                templateUrl:"static/template/edit-site.html",
+                controller:'EditSiteCtrl'
             })
         .when('/show-site',
             {
                 templateUrl:"static/template/show-site.html",
                 controller:'ShowSiteCtrl'
             })
-        .when('/create-page',
-            {
-                templateUrl:"static/template/create-page.html",
+        .when('/create-page', {
+                templateUrl:"static/template/createpage.html",
                 controller:'CreatePageCtrl'
             })
-        .when('/login',
-            {
+        .when('/login', {
                 templateUrl:"static/template/login.html",
                 controller:'LoginCtrl'
             })
@@ -186,15 +186,15 @@ siteApp.config([
 
     $rootScope.hasRole = function (role) {
 
-        // if ($rootScope.user === undefined) {
-        //     return false;
-        // }
-        //
-        // if ($rootScope.user.roles[role] === undefined) {
-        //     return false;
-        // }
-        //
-        // return $rootScope.user.roles[role];
+        if ($rootScope.user === undefined) {
+            return false;
+        }
+
+        if ($rootScope.user.roles[0] === undefined) {
+            return false;
+        }
+
+        return $rootScope.user.roles[0].name;
 
         return true;
     };

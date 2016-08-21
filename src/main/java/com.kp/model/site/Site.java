@@ -8,11 +8,10 @@ import java.util.List;
  */
 
 @Entity
-//@Table(name = "site")
+@Table(name = "site")
 public class Site {
 
     @Id
-    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
 
@@ -35,11 +34,11 @@ public class Site {
     @Column(name = "creation_time", nullable = false)
     private String creationTime;
 
-//    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
-//    @JoinTable(name="page",
-//            joinColumns={@JoinColumn(name="site_id")},
-//            inverseJoinColumns={@JoinColumn(name="page_id")})
-//    private List<Page> pages;
+    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
+    @JoinTable(name="site_page",
+            joinColumns={@JoinColumn(name="site_id")},
+            inverseJoinColumns={@JoinColumn(name="page_id")})
+    private List<Page> pages;
 
 
     public Long getId() {

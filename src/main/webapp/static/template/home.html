@@ -89,16 +89,44 @@
 							</div>
 						</div>
 
-					<form ng-submit="addComment()"  name="myForm" type="POST">
-						<div class="input-group">
-							<div class="input-group-btn">
-								<button ng-click="addComment()" type="submit" class="btn btn-default">
-									<i class="glyphicon glyphicon-share"></i>
-								</button>
+					<div class="row" >
+
+						<div class="row"  ng-repeat="com in site.comments track by $index">
+							<div class=" panel panel-default">
+								<div class="panel-body">
+									<div class="col-md-2 verticalhr">
+										<div class="row">
+											<img alt="{{com.userName}}" src="{{com.userAvatarUrl}}" class="img-circle" width="50px" height="50px"/>
+										</div>
+										<div class="row">
+											<a href="#/user/{{com.userName}}" >{{com.userName}}</a>
+										</div>
+
+									</div>
+									<div class="col-md-10 panel-body">
+										<h4>{{com.text}}</h4>
+									</div>
+									<div class="pull-right">
+										{{com.creationTime}}
+									</div>
+								</div>
 							</div>
-							<input type="text" ng-model="comment.text" class="form-control">
 						</div>
-					</form>
+
+						<hr>
+
+						<form ng-submit="addComment()" ng-show="hasRole('USER')" name="myForm" type="POST">
+							<div class="input-group">
+								<div class="input-group-btn">
+									<button ng-click="" type="submit" class="btn btn-default">
+										<i class="glyphicon glyphicon-share"></i>
+									</button>
+								</div>
+								<input type="text" ng-model="comment.text" class="form-control">
+							</div>
+						</form>
+
+					</div>
 
 
 				</div>

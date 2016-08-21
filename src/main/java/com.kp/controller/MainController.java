@@ -6,7 +6,9 @@ import java.util.Map;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
+import com.kp.service.CommentService;
 import com.kp.transfer.UrlTransfer;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by user on 8/3/16.
@@ -23,7 +26,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MainController {
 
-
+    @Autowired
+    private CommentService commentService;
 
     @RequestMapping("/")
     public String welcome(Map<String, Object> model) {
@@ -35,6 +39,12 @@ public class MainController {
     @RequestMapping("/foo")
     public String foo(Map<String, Object> model) {
         throw new RuntimeException("Foo");
+    }
+
+    @RequestMapping(value = "/comments", method = RequestMethod.GET)
+    @ResponseBody
+    public String showComments(){
+        return commentService.findAll().toString();
     }
 
     @RequestMapping(value = "/image/", method = RequestMethod.POST)
@@ -52,5 +62,7 @@ public class MainController {
         }
         return new ResponseEntity<UrlTransfer>(new UrlTransfer(url), HttpStatus.OK);
     }
+
+
 }
 
