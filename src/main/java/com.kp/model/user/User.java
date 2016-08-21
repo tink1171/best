@@ -136,6 +136,14 @@ public class User {
 		this.enabled = enabled;
 	}
 
+	public List<Site> getSite() {
+		return site;
+	}
+
+	public void setSite(List<Site> site) {
+		this.site = site;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
