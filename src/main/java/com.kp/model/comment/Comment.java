@@ -10,7 +10,7 @@ import java.util.Date;
  * Created by alex on 5/5/2016.
  */
 @Entity
-@Table(name = "comment")
+//@Table(name = "comment")
 public class Comment implements BaseEntity{
 
     @Id
