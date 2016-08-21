@@ -32,8 +32,8 @@ public class Site {
     @Column(name = "description")
     private String description;
 
-//    @Column(name = "creation_time", nullable = false)
-//    private String creationTime;
+    @Column(name = "creation_time", nullable = false)
+    private String creationTime;
 
 //    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
 //    @JoinTable(name="page",
@@ -90,13 +90,14 @@ public class Site {
         this.description = description;
     }
 
-//    public String getCreationTime() {
-//        return creationTime;
-//    }
-//
-//    public void setCreationTime(String creationTime) {
-//        this.creationTime = creationTime;
-//    }
+    public String getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
 
     @Override
     public String toString() {
