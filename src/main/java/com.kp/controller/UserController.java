@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.MessageSource;
+import org.springframework.data.domain.Example;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -148,10 +149,9 @@ public class UserController {
         if (principal instanceof String && (principal).equals("anonymousUser")) {
             throw new WebApplicationException(401);
         }
-        UserDetails userDetails = (UserDetails) principal;
+        ExampleUserDetails userDetails = (ExampleUserDetails) principal;
         //ExampleUserDetails userDetails = (ExampleUserDetails) principal;
-
-        return new UserTransfer(userDetails.getUsername());
+        return new UserTransfer(userDetails.getId(),userDetails.getAvatarUrl(),userDetails.getUsername());
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
