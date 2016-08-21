@@ -183,6 +183,7 @@ public class UserController {
         }
 
         user.setEnabled(true);
+
         userService.saveRegisteredUser(user);
         LOGGER.debug("INFO : " + user.toString());
         try {

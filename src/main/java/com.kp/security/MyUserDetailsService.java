@@ -28,7 +28,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	@Autowired
 	private UserRepository userRepository;
 
-//	@Override
+	//	@Override
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
 //		LOGGER.debug(" load by with email " + email);
 		LOGGER.error(" load by with username " + userName);
@@ -43,9 +43,9 @@ public class MyUserDetailsService implements UserDetailsService {
 //		LOGGER.debug("Role in userdetails " + user.getRoles().toString());
 		LOGGER.error("Role in userdetails " + user.getRoles().toString());
 		return new org.springframework.security.core.userdetails.User(user.getUsername(),
-						user.getPassword().toLowerCase(),user.isEnabled(),
-						accountNonExpired,credentialsNonExpired,
-						accountNonLocked,getAuthorities(user.getRoles()));
+				user.getPassword().toLowerCase(),user.isEnabled(),
+				accountNonExpired,credentialsNonExpired,
+				accountNonLocked,getAuthorities(user.getRoles()));
 
 	}
 

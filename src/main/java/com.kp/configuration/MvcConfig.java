@@ -77,9 +77,5 @@ public class MvcConfig extends WebMvcConfigurerAdapter{
 	 return messageSource;
 	 }
 
-	@Bean
-	public Filter shallowEtagHeaderFilter() {
-		return new CORSFilter();
-	}
 
 }
