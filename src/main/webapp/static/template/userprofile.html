@@ -85,7 +85,7 @@
 
                             <div class="col-md-12">
                                 <a href="#/create-site">
-                                    <button type="button" ng-show="isRootUser() " class="btn btn-default btn-block">{{'CREATE_COMIX'}}</button>
+                                    <button type="button" ng-show="isRootUser() " class="btn btn-default btn-block">{{'CREATE_SITE'}}</button>
                                 </a>
                             </div>
 
@@ -106,7 +106,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row" ng-repeat="site in user.sites ">
+                                <div class="row" ng-repeat="site in user.site ">
 
                                     <div class="row">
                                         <div>
@@ -128,27 +128,9 @@
                                     <div class="row">
                                         <p class="text-center">{{site.description}}</p>
                                     </div>
-                                    <div class="row">
-                                        <p class="text-center">{{'RATE' | translate}}:{{site.rate}}</p>
-                                    </div>
-
-                                    <div class="row">
-                                        <ul class="phone-thumbs list-unstyled">
-                                            <li ng-repeat="page in site.pages">
-                                                <img ng-src="{{page.blocks[0].imageUrl}}" ng-click="setImage(img)">
-                                            </li>
-                                        </ul>
-                                    </div>
 
                                     <hr>
 
-                                    <div class="row" >
-                                        <ul class="submenu">
-                                            <li ng-repeat="tag in site.tags">
-                                                <a href="/searchbytag/{{tag.name}}"><span class="label label-default">{{tag.name}}</span></a>
-                                            </li>
-                                        </ul>
-                                    </div>
 
                                     <div class="row" >
                                         <a href="#/site/{{site.id}}">{{'COMMENTS' | translate}}:{{site.comments.length}}</a>

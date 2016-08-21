@@ -98,13 +98,14 @@ public class Site {
         this.description = description;
     }
 
-//    public String getCreationTime() {
-//        return creationTime;
-//    }
-//
-//    public void setCreationTime(String creationTime) {
-//        this.creationTime = creationTime;
-//    }
+    public String getCreationTime() {
+        return creationTime;
+    }
+
+    public void setCreationTime(String creationTime) {
+        this.creationTime = creationTime;
+    }
+
 
     @Override
     public String toString() {

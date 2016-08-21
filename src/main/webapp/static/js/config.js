@@ -186,15 +186,17 @@ siteApp.config([
 
     $rootScope.hasRole = function (role) {
 
-        if ($rootScope.user === undefined) {
-            return false;
-        }
+        // if ($rootScope.user === undefined) {
+        //     return false;
+        // }
+        //
+        // if ($rootScope.user.roles[role] === undefined) {
+        //     return false;
+        // }
+        //
+        // return $rootScope.user.roles[role];
 
-        if ($rootScope.user.roles[role] === undefined) {
-            return false;
-        }
-
-        return $rootScope.user.roles[role];
+        return true;
     };
 
     $rootScope.logout = function () {
