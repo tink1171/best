@@ -1,12 +1,9 @@
 package com.kp.model.user;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.kp.model.comment.Comment;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.List;
-
 /**
  * Created by diman on 05.08.16.
  */
@@ -42,19 +39,9 @@ public class User {
 	private boolean enabled;
 
 	@ManyToMany
-	@JoinTable(name = "users_roles",
-			joinColumns = @JoinColumn(name = "user_id",
-					referencedColumnName = "id"),
-			inverseJoinColumns = @JoinColumn(name = "role_id",
-					referencedColumnName = "id"))
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	@JsonBackReference
 	private Collection<Role> roles;
-
-	@OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
-	@JoinTable(name="user_comment",
-			joinColumns={@JoinColumn(name="user_id")},
-			inverseJoinColumns={@JoinColumn(name="comment_id")})
-	private List<Comment> comments;
 
 	public User() {
 		super();
@@ -133,14 +120,6 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public List<Comment> getComments() {
-		return comments;
-	}
-
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -170,16 +149,15 @@ public class User {
 	@Override
 	public String toString() {
 		return "User{" +
-				"id=" + id +
-				", avatarUrl='" + avatarUrl + '\'' +
-				", firstName='" + firstName + '\'' +
-				", lastName='" + lastName + '\'' +
-				", username='" + username + '\'' +
-				", email='" + email + '\'' +
-				", password='" + password + '\'' +
-				", enabled=" + enabled +
-				", roles=" + roles +
-				", comments=" + comments +
-				'}';
+						"id=" + id +
+						", avatarUrl='" + avatarUrl + '\'' +
+						", firstName='" + firstName + '\'' +
+						", lastName='" + lastName + '\'' +
+						", username='" + username + '\'' +
+						", email='" + email + '\'' +
+						", password='" + password + '\'' +
+						", enabled=" + enabled +
+						", roles=" + roles +
+						'}';
 	}
 }

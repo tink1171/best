@@ -1,4 +1,4 @@
-//package com.kp.model.site;
+package com.kp.model.site;//package com.kp.model.site;
 //
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 //import com.websystique.springmvc.model.BaseEntity;

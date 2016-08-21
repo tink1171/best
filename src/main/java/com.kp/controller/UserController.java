@@ -149,9 +149,9 @@ public class UserController {
         if (principal instanceof String && (principal).equals("anonymousUser")) {
             throw new WebApplicationException(401);
         }
-        ExampleUserDetails userDetails = (ExampleUserDetails) principal;
+        UserDetails userDetails = (UserDetails) principal;
         //ExampleUserDetails userDetails = (ExampleUserDetails) principal;
-        return new UserTransfer(userDetails.getId(),userDetails.getAvatarUrl(),userDetails.getUsername());
+        return new UserTransfer(userDetails.getUsername());
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
