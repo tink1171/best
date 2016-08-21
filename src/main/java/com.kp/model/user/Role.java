@@ -9,6 +9,7 @@ import java.util.Collection;
  * Created by diman on 05.08.16.
  */
 @Entity
+@Table(name = "roles")
 public class Role {
 
 	@Id
@@ -22,7 +23,7 @@ public class Role {
 //	@ManyToMany
 //	@JoinTable(name = "roles_privileges", joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
 //	private Collection<Privilege> privileges;
-
+	@Column(name = "role_name")
 	private String name;
 
 	public Role() {
