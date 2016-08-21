@@ -1,9 +1,13 @@
 package com.kp.model.user;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.kp.model.comment.Comment;
+import com.kp.model.site.Site;
 
 import javax.persistence.*;
 import java.util.Collection;
+import java.util.List;
+
 /**
  * Created by diman on 05.08.16.
  */
@@ -42,6 +46,18 @@ public class User {
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	@JsonBackReference
 	private Collection<Role> roles;
+
+	@OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
+	@JoinTable(name="user_site",
+			joinColumns={@JoinColumn(name="user_id")},
+			inverseJoinColumns={@JoinColumn(name="site_id")})
+	private List<Site> site;
+//
+//	@OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
+//	@JoinTable(name="user_comment",
+//			joinColumns={@JoinColumn(name="user_id")},
+//			inverseJoinColumns={@JoinColumn(name="comment_id")})
+//	private List<Comment> comments;
 
 	public User() {
 		super();

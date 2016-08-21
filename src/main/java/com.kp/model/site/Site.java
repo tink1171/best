@@ -1,5 +1,7 @@
 package com.kp.model.site;
 
+import com.kp.model.comment.Comment;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -32,14 +34,20 @@ public class Site {
     @Column(name = "description")
     private String description;
 
-//    @Column(name = "creation_time", nullable = false)
-//    private String creationTime;
+    @Column(name = "creation_time", nullable = false)
+    private String creationTime;
 
 //    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
 //    @JoinTable(name="page",
 //            joinColumns={@JoinColumn(name="site_id")},
 //            inverseJoinColumns={@JoinColumn(name="page_id")})
 //    private List<Page> pages;
+
+//    @OneToMany(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
+//    @JoinTable(name="site_comment",
+//            joinColumns={@JoinColumn(name="site_id")},
+//            inverseJoinColumns={@JoinColumn(name="comment_id")})
+//    private List<Comment> comments;
 
 
     public Long getId() {

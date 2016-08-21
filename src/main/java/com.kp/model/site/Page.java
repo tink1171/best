@@ -15,6 +15,9 @@ public class Page {
     @Column(name = "content",length = 10000)
     private String content;
 
+    @Column(name = "content")
+    private String tempalate;
+
     public Page(){
 
     }
@@ -31,8 +34,8 @@ public class Page {
         return content;
     }
 
-    public void setContent(String content_1) {
-        this.content = content_1;
+    public void setContent(String content) {
+        this.content = content;
     }
 
 
