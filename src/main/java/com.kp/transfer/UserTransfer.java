@@ -19,11 +19,10 @@ public class UserTransfer {
 		this.name = userName;
 	}
 
-	public UserTransfer(long id, String avatarUrl, String userName, Map<String, Boolean> roles) {
+	public UserTransfer(long id, String avatarUrl, String userName) {
 		this.id=id;
 		this.avatarUrl=avatarUrl;
 		this.name = userName;
-		this.roles = roles;
 	}
 
 	public String getName()

@@ -1,11 +1,16 @@
 /**
  * Created by user on 8/20/16.
  */
-siteApp.controller('SiteListCtrl', ['$scope', 'SiteService', function($scope, SiteService) {
+siteApp.controller('SiteListCtrl', ['$scope', 'SiteService','$rootScope',
+    function($scope, SiteService, $rootScope) {
     var self = this;
     var nullsite={id:0,name:"",user:{},rate:0.0,description:'',pages:{blocks:''},tags:{}};
     self.site=nullsite;
     self.sites=[];
+    var nullcomment={};
+    $scope.userid = null;
+    $scope.comment = nullcomment;
+    $scope.user={};
 
     $scope.sortField=undefined;
     $scope.reverse = true;
@@ -40,12 +45,31 @@ siteApp.controller('SiteListCtrl', ['$scope', 'SiteService', function($scope, Si
                         console.log(item);
                         }
                     );
-                    alert(self.sites);
+
                 },
                 function(errResponse){
                     console.error('Error while fetching Currencies');
                 }
             );
+    };
+
+
+    $scope.addComment = function () {
+        if ($scope.comment.text!=null) {
+            alert($rootScope.user.avatarUrl);
+            $scope.comment.userName = $rootScope.user.name;
+            $scope.comment.userAvatarUrl = $rootScope.user.avatarUrl;
+            $scope.user.comments.push(angular.copy($scope.comment));
+            $scope.update();
+            $scope.comment = nullcomment;
+        }
+    };
+
+    $scope.update=function () {
+        UserService.updateUser($scope.user, $scope.user.id).then(function(data){
+            $scope.user=data;
+            $rootScope.user.avatarUrl=$scope.user.avatarUrl;
+        });
     };
 
     self.createSite = function(site){

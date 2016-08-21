@@ -3,7 +3,6 @@ VALUES ('ROLE_ADMIN');
 INSERT INTO Role (name)
 VALUES ('ROLE_USER');
 
-
 INSERT INTO user_account(firstname, lastname, username, email, password, enabled, avatar_url)
 VALUES ('diman', 'volina','volina', 'dimanvolina@mail.ru', '123', 'true','https://pp.vk.me/c629114/v629114505/1370f/7mMtaMqFbck.jpg');
 INSERT INTO users_roles(user_id, role_id)

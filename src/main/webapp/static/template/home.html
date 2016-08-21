@@ -1,29 +1,109 @@
 <div class="row row-offcanvas row-offcanvas-right ">
-			<div>
-				<div class="col-xs-12 col-sm-9 col-lg-9 item thumbnail panel panel-body" ng-repeat="site in sites">
-					<div class="col-md-2 verticalhr">
-						<div class="row">
-							<img alt="{{site.userName}}" src="{{site.site_logo_url}}" class="img-circle" width="50px" height="50px"/>
-						</div>
-						<div class="row">
-							<a href="#/user/{{site.userName}}" >{{site.userName}}</a>
-						</div>
-					</div>
 
-					<div class="row">
-						<h2 align="center">{{site.name}}</h2>
-						<div class="preview-img text-center">
-							<a href="#/site/{{site.id}}" >
-							</a>
-						</div>
-					</div>
+	<div class="col-xs-12">
 
-					<div class="row">
-						<p class="text-center">{{site.description}}</p>
+		<div class="row" >
+			<div class="col-xs-12 sidebar-offcanvas" id="sidebar">
+				<h3 class="text-center">{{'SEARCH' | translate}}</h3>
+				<div class="list-group">
+					<div class=" input-group">
+						<form>
+							<input type="text" class="form-control" placeholder="{{'SEARCH' | translate}}..." ng-model="search">
+						</form>
+						<span class="input-group-btn">
+                              <button class="btn btn-default" type="button">{{'SEARCH' | translate}}</button>
+                          </span>
 					</div>
-					<hr>
+				</div>
+			</div><!--/.sidebar-offcanvas-->
+		</div>
+
+		<hr>
+
+		<div class="row"  ng-controller="SiteListCtrl as ctrl" style="overflow : hidden">
+				<div class="col-xs-6  " style="float: left" ng-repeat="site in ctrl.sites | filter: search | orderBy:sortField:reverse">
+					<!--<div class="col-md-2 verticalhr">-->
+					<!--<div class="row">-->
+					<!--<img alt="{{site.username}}" src="{{site.siteLogoUrl}}" class="img-circle" width="50px" height="50px"/>-->
+					<!--</div>-->
+					<!--<div class="row">-->
+					<!--<a href="#/user/{{site.username}}" >{{site.userName}}</a>-->
+					<!--</div>-->
+					<!--</div>-->
+
+
+
+					<!--<div class="row">-->
+					<!--<p class="text-center">{{site.description}}</p>-->
+					<!--</div>-->
+					<!--<div class="row">-->
+					<!--<p class="text-center">{{'RATE' | translate}}:{{site.rate}}</p>-->
+					<!--</div>-->
+
+					<!--<hr>-->
+
+					<!--<div class="row" >-->
+					<!--<ul class="submenu">-->
+					<!--<li ng-repeat="tag in site.tags">-->
+					<!--<a href="/searchbytag/{{tag.name}}"><span class="label label-default">{{tag.name}}</span></a>-->
+					<!--</li>-->
+					<!--</ul>-->
+					<!--</div>-->
+
+					<!--<div class="row" >-->
+					<!--<a href="#/site/{{site.id}}">{{'COMMENTS' | translate}}:{{site.comments.length}}</a>-->
+					<!--</div>-->
+
+					<!--<div class="row">-->
+					<!--<p><a class="btn btn-primary" href="#/site/{{site.id}}" role="button">{{'VIEW_SITE' | translate}}<span class="glyphicon glyphicon-chevron-right"></span></a></p>-->
+					<!--</div>-->
+
+
+
+						<div class="card radius shadowDepth1 col-sm-12" >
+							<div class="card__image border-tlr-radius">
+								<img src="{{site.siteLogoUrl}}" height="400px"  class="border-tlr-radius">
+							</div>
+
+							<div class="card__content card__padding">
+
+								<div class="card__meta">
+									<a href="#">Web Design</a>
+									<time>17th March</time>
+								</div>
+
+								<article class="card__article">
+									<h2><a href="#">{{site.sitename}}</a></h2>
+
+									<p>{{site.description}}</p>
+								</article>
+							</div>
+
+							<div class="card__action">
+								<div class="card__author">
+									<img src="http://lorempixel.com/40/40/sports/" alt="user">
+									<div class="card__author-content">
+										By <a href="#">{{site.username}}</a>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					<form ng-submit="addComment()"  name="myForm" type="POST">
+						<div class="input-group">
+							<div class="input-group-btn">
+								<button ng-click="addComment()" type="submit" class="btn btn-default">
+									<i class="glyphicon glyphicon-share"></i>
+								</button>
+							</div>
+							<input type="text" ng-model="comment.text" class="form-control">
+						</div>
+					</form>
+
+
 				</div>
 			</div>
 		</div>
-
+	</div>
+</div>
 

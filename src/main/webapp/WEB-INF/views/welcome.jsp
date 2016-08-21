@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/site_defoult.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/cards.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/userProfile.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/bower_components/angular-tagger/build/angular-tagger.css"/>
 
@@ -64,6 +65,28 @@
     </div>
 </nav>
 
+<nav class="navbar navbar-light bg-faded">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <ul class="nav navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+        </li>
+    </ul>
+    <form class="form-inline pull-xs-right">
+        <input class="form-control" type="text" placeholder="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+</nav>
+
 <div class="container" style="margin-top: 100px">
 
     <div class="alert alert-danger" ng-show="error">{{error}}</div>
@@ -71,8 +94,6 @@
     <ng-view></ng-view>
 
 
-
-    <hr>
 
     <footer>
         <p>&copy; Vadia i Volina</p>
