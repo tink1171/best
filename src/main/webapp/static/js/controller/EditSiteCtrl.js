@@ -1,26 +1,45 @@
 /**
  * Created by user on 8/21/16.
  */
-siteApp.controller('EditSiteCtrl', ['$scope','$http','UserService', function( $scope, $http , UserService) {
+siteApp.controller('EditSiteCtrl', ['$scope','$http','UserService','SiteService','$routeParams', '$location',
+    function( $scope, $http , UserService, SiteService ,$routeParams,$location) {
 
-    $scope.tags = [];
+        $scope.site = {};
+        $scope.siteId = $routeParams.siteId;
+        $scope.page = {};
 
-    $scope.pages=[];
-    $scope.name='';
-    $scope.description='';
-    $scope.site = {};
+        function getSite() {
+            SiteService.getSiteById($scope.siteId).then(function (response) {
+                $scope.site = response;
+            });
+        }
+
+        getSite();
+
+     $scope.add_page = function () {
+         $scope.nullpage = {id:null,title:'Page 1',template:0,
+             content1:'',content2:'',content3:''};
+         $scope.site.pages.push($scope.nullpage);
+         SiteService.updateSite($scope.site, $scope.site.id).then(
+             function (data) {
+                 $scope.site = data;
+             }
+         )
+     };
+
+     $scope.delete = function (id) {
+       SiteService.deletePage($scope.site.id ,id).then(
+           function () {
+               getSite();
+           }
+       )
+     };
 
 
+     $scope.edit_page = function (id) {
+         $location.path('/edit-page/'+id);
+     };
 
-    $scope.save = function () {
-        var res = $http.post('/savecompany_json', page);
-        res.success(function(data, status, headers, config) {
-            $scope.message = data;
-        });
-        res.error(function(data, status, headers, config) {
-            alert( "failure message: " + JSON.stringify({data: data}));
-        });
-    }
 
     $scope.save = function () {
         $scope.site = getSite();
@@ -46,8 +65,6 @@ siteApp.controller('EditSiteCtrl', ['$scope','$http','UserService', function( $s
 
 
     };
-
-
 }]);
 
 

@@ -89,6 +89,14 @@ public class Site {
         this.description = description;
     }
 
+    public List<Page> getPages() {
+        return pages;
+    }
+
+    public void setPages(List<Page> pages) {
+        this.pages = pages;
+    }
+
     public String getCreationTime() {
         return creationTime;
     }

@@ -11,7 +11,6 @@ siteApp.controller('SiteListCtrl', ['$scope', 'SiteService','$rootScope',
     $scope.userid = null;
     $scope.comment = nullcomment;
     $scope.user={};
-    alert();
     $scope.sortField=undefined;
     $scope.reverse = true;
 
@@ -45,7 +44,6 @@ siteApp.controller('SiteListCtrl', ['$scope', 'SiteService','$rootScope',
                         console.log(item);
                         }
                     );
-
                 },
                 function(errResponse){
                     console.error('Error while fetching Currencies');

@@ -15,17 +15,17 @@ siteApp.config([
                 templateUrl:"static/template/createsite.html",
                 controller:'CreateSiteCtrl'
             })
-        .when('/edit-site', {
-                templateUrl:"static/template/edit-site.html",
+        .when('/edit-site/:siteId', {
+                templateUrl:"static/template/editsite.html",
                 controller:'EditSiteCtrl'
             })
-        .when('/show-site',
+        .when('/show-site/:id',
             {
                 templateUrl:"static/template/show-site.html",
                 controller:'ShowSiteCtrl'
             })
-        .when('/create-page', {
-                templateUrl:"static/template/createpage.html",
+        .when('/edit-page/:id', {
+                templateUrl:"static/template/editpage.html",
                 controller:'CreatePageCtrl'
             })
         .when('/login', {

@@ -2,34 +2,44 @@
 
 /* Controllers */
 
-siteApp.controller('CreateSiteCtrl', ['$scope','$http','UserService','$rootScope',
-    function( $scope, $http , UserService, $rootScope) {
+siteApp.controller('CreateSiteCtrl', ['$scope','$http','SiteService','$rootScope', '$location',
+    function( $scope, $http , SiteService, $rootScope ,$location) {
 
     $scope.tags = [];
 
     $scope.pages=[];
-    $scope.name='';
-    $scope.description='';
+    $scope.sitename='';
+    $scope.siteLogoUrl = '';
     $scope.site = {};
+    $scope.theme = 'default';
+        $scope.siteLogoUrl='http://img1.goodfon.su/wallpaper/big/d/19/minimalizm-origami-ptica.jpg';
 
-    // $scope.save = function () {
-    //     var res = $http.post('/savecompany_json', page);
-    //     res.success(function(data, status, headers, config) {
-    //         $scope.message = data;
-    //     });
-    //     res.error(function(data, status, headers, config) {
-    //         alert( "failure message: " + JSON.stringify({data: data}));
-    //     });
-    // }
+    $scope.change_theme = function (theme) {
+        $scope.theme = theme;
+    };
+
+    $scope.load_image = function () {
+        cloudinary.openUploadWidget({
+                cloud_name: 'dgyxvzoad',
+                upload_preset: 'xpdfeyzq', theme: 'minimal'
+            },
+            function (error, result) {
+                $scope.siteLogoUrl = result[0].secure_url;
+                $location.path('/create-site')
+            });
+    };
 
     $scope.save = function () {
-        $scope.site.id=2;
+        $scope.site.id=null;
         $scope.site.username=$rootScope.user.name;
-        $scope.site.sitename=$scope.name;
-        $scope.site.siteLogoUrl = "";
-        $scope.site.description = "4324234";
+        $scope.site.sitename=$scope.sitename;
+        alert($scope.description);
+        $scope.site.description = $scope.description;
         $scope.site.creationTime="12.05";
-
+        $scope.site.siteLogoUrl = $scope.siteLogoUrl;
+        $scope.site.pages = [];
+        $scope.site.pages.push({id:null,title:'Page 1',template:0,
+            content1:'',content2:'',content3:''});
         //$scope.site.comment=[];
       //  $scope.site.theme = $scope.theme;
     //    $scope.site.rate=0.0;
@@ -37,34 +47,18 @@ siteApp.controller('CreateSiteCtrl', ['$scope','$http','UserService','$rootScope
      //   $scope.tags.forEach(function(item, i, arr) {
     //        $scope.site.tags.push(item);
     //    });
-
         console.log($scope.site.username);
-
-        UserService.getUserByName($scope.site.username).then(function (data) {
-            $scope.user=data;
-            $scope.user.site.push($scope.site);
-            UserService.updateUser($scope.user,$scope.user.id);
-        });
-
+        SiteService.createSite($scope.site,$scope.site.username).then(
+            function (response) {
+                $location.path("/edit-site/" + response);
+            }
+        );
 
     };
 
 
 }]);
 
-
-
-siteApp.controller('ShowSiteCtrl', ['$scope','$http', function( $scope, $http){
-    $scope.page = {};
-    $http.get("/page/2").success(function (response) {
-        $scope.page = response;
-        $('.hui').append($scope.page.content);
-    }).error(function () {
-        alert("hui");
-    });
-    $scope.theme = "dark";
-
-}]);
 
 
 

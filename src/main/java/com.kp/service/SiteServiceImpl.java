@@ -1,6 +1,7 @@
 package com.kp.service;
 
 import com.kp.model.site.Site;
+import com.kp.model.user.User;
 import com.kp.repository.SiteRepository;
 import com.kp.service.SiteService;
 import org.springframework.beans.factory.annotation.Autowired;

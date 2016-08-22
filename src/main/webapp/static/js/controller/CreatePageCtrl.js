@@ -4,46 +4,54 @@
 
 'use strict';
 
-siteApp.controller('CreatePageCtrl', ['$scope','$http', function( $scope, $http){
-    var ppage = {};
-    var template = [[0,'rectangle_horizontal','box','box'],
-        [1,'rectangle_vertical','rectangle_vertical','none'],
-        [2,'rectangle_vertical','box','box']];
-    $scope.current_template = template[0];
+siteApp.controller('CreatePageCtrl', ['$scope','SiteService','$routeParams' ,
+    function( $scope, SiteService, $routeParams){
+        $scope.page = {};
+        $scope.title = '';
+        $scope.template = 0;
+        var template = [[0,'rectangle_horizontal','box','box'],
+            [1,'rectangle_vertical','rectangle_vertical','none'],
+            [2,'rectangle_vertical','box','box']];
 
-    $scope.change_template = function (id) {
-        $scope.current_template = template[id];
-    };
+        $scope.current_template = template[0];
 
-    $( function() {
-        $( ".radio" ).checkboxradio({
-            icon: false
-        });
-    });
-    // $( function() {
-    //     $( "#1,#2, #3" ).sortable({
-    //         connectWith: ".connectedSortable",
-    //         update: function () {
-    //             tinymce.init({
-    //                 selector: '.mytextarea'
-    //             });
-    //         }
-    //     });
-    // } );
-    make_drag_and_drop();
-    make_dialog();
+        $scope.change_template = function change_template (id) {
+            $scope.current_template = template[id];
+            $scope.template = id;
+        };
 
-    $scope.save = function () {
-        alert($($("iframe").get(0).contentDocument).html());
-        ppage.content = $('.page_container').html();
-        var res = $http.post('/savecompany_json', ppage);
-        res.success(function(data, status, headers, config) {
-            alert(data);
+        SiteService.getPageById($routeParams.id).then(
+            function (data) {
+                $scope.page = data;
+                alert($scope.page.content);
+                $('#1').append($scope.page.content1);
+                $('#2').append($scope.page.content2);
+                $('#3').append($scope.page.content3);
+
+                $scope.template = $scope.page.template;
+                $scope.current_template = template[$scope.page.template];
+            }
+        );
+
+
+        $( function() {
+            $( ".radio" ).checkboxradio({
+                icon: false
+            });
         });
-        res.error(function(data, status, headers, config) {
-            alert( "failure message: " + JSON.stringify({data: data}));
-        });
-    }
+
+        make_drag_and_drop();
+        make_dialog();
+
+        $scope.save = function () {
+                $scope.page.title = $scope.title;
+                $scope.page.content1 = $('#1').html();
+                $scope.page.content2 = $('#2').html();
+                $scope.page.content3 = $('#3').html();
+                $scope.page.template = $scope.template;
+
+                SiteService.updatePage($scope.page , $scope.page.id);
+        }
 
 }]);
 
@@ -86,7 +94,8 @@ function add_Youtube(box_id) {
         buttons: [{
             text: "OK", click: function () {
                 var youtube_link = $("#link").val();
-                $(box_id).append('<iframe class="resizable" width="100%" height="100%" src=' + youtube_link + ' frameborder="0" allowfullscreen></iframe>');
+                $(box_id).append('<iframe class="resizable" width="100%" height="100%" src=' +
+                    youtube_link + ' frameborder="0" allowfullscreen></iframe>');
                 $(this).dialog("close");
             }
         }]

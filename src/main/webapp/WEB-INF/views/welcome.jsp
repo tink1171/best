@@ -94,11 +94,6 @@
     <ng-view></ng-view>
 
 
-
-    <footer>
-        <p>&copy; Vadia i Volina</p>
-    </footer>
-
 </div><!--/.container-->
 
 
@@ -126,6 +121,7 @@
 <script src="${pageContext.request.contextPath}/static/js/controller/UserProfileCtrl.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/controller/SiteListCtrl.js"></script>
 <script src="${pageContext.request.contextPath}/static/js/controller/EditSiteCtrl.js"></script>
+<script src="${pageContext.request.contextPath}/static/js/controller/ShowSiteCtrl.js"></script>
 
 
 </body>

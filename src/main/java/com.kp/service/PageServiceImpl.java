@@ -14,10 +14,19 @@ import org.springframework.transaction.annotation.Transactional;
 public class PageServiceImpl implements PageService {
 
     @Autowired
-    private PageRepository pageRepository;
+    private PageRepository repository;
 
-    @Override
     public void savePage(Page page) {
-        pageRepository.save(page);
+        repository.save(page);
     }
+
+    public void deletePageById(long id) {
+        repository.delete(id);
+    }
+
+    public Page findById(long id) {
+        return repository.findById(id);
+    }
+
+
 }

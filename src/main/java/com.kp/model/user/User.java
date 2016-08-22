@@ -22,9 +22,7 @@ public class User {
 	@Column(name="avatar_url")
 	private String avatarUrl;
 
-
 	@Column(name = "firstname")
-
 	private String firstName;
 
 	@Column(name = "lastname")
@@ -143,6 +141,11 @@ public class User {
 
 	public void setSite(List<Site> site) {
 		this.site = site;
+	}
+
+	public void addSite(Site site)
+	{
+		this.site.add(site);
 	}
 
 	@Override

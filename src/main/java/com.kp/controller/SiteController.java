@@ -54,7 +54,7 @@ public class SiteController {
         return user;
     }
 
-    @RequestMapping(value = "/user/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.PUT)
     public @ResponseBody ResponseEntity<User> updateUser(@PathVariable("id") long id, @RequestBody User user) {
         System.out.println("Updating User " + id);
 
@@ -79,13 +79,6 @@ public class SiteController {
     }
 
 
-    @RequestMapping(value = "/page/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public Page showpages(@PathVariable("id") long id){
-        Page page = repository.findById(id);
-        return page;
-    }
-
     @RequestMapping(value = "/site/", method = RequestMethod.GET)
     public ResponseEntity<List<Site>> listAllSites() {
 
@@ -106,19 +99,34 @@ public class SiteController {
         return new ResponseEntity<Site>(site, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/page/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Page> getPage(@PathVariable("id") long id) {
+        Page page = pageService.findById(id);
+        if (page == null) {
+            return new ResponseEntity<Page>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<Page>(page, HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/site", method = RequestMethod.POST)
-    public ResponseEntity<Void> createSite(@RequestBody Site site, UriComponentsBuilder ucBuilder) {
+    public ResponseEntity<Long> createSite(@RequestBody Site site, UriComponentsBuilder ucBuilder) {
 
         if (siteService.isSiteExist(site)) {
-            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
+            return new ResponseEntity<Long>(HttpStatus.CONFLICT);
         }
 
-        siteService.saveSite(site);
+        User user = userService.findByUsername(site.getUsername());
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setLocation(ucBuilder.path("/site/{id}").buildAndExpand(site.getId()).toUri());
-        return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+        user.addSite(site);
+        userService.saveUser(user);
+        Long id = user.getSite().get(user.getSite().size()-1).getId();
+
+        System.out.println(String.valueOf(id));
+
+        return new ResponseEntity<Long>(id, HttpStatus.CREATED);
     }
+
+
 
     @RequestMapping(value = "/site/{id}", method = RequestMethod.PUT)
     public @ResponseBody  ResponseEntity<Site> updateSite(@PathVariable("id") long id, @RequestBody Site site) {
@@ -130,14 +138,36 @@ public class SiteController {
         }
 
         currentSite.setSitename(site.getSitename());
-     //   currentSite.setComments(site.getComments());
+        //   currentSite.setComments(site.getComments());
+        currentSite.setSiteLogoUrl(site.getSiteLogoUrl());
         currentSite.setDescription(site.getDescription());
-    //    currentSite.setPages(site.getPages());
-      //  currentSite.setRate(site.getRate());
-     //   currentSite.setTags(site.getTags());
+        currentSite.setPages(site.getPages());
+        //  currentSite.setRate(site.getRate());
+        //   currentSite.setTags(site.getTags());
 
         siteService.updateSite(currentSite);
         return new ResponseEntity<Site>(currentSite, HttpStatus.OK);
+    }
+
+
+    @RequestMapping(value = "/page/{id}", method = RequestMethod.PUT)
+    public @ResponseBody  ResponseEntity<Page> updatePage(@PathVariable("id") long id,
+                                                          @RequestBody Page page) {
+
+        Page currentPage = pageService.findById(id);
+
+        if (currentPage==null) {
+            return new ResponseEntity<Page>(HttpStatus.NOT_FOUND);
+        }
+
+        currentPage.setTitle(page.getTitle());
+        currentPage.setContent1(page.getContent1());
+        currentPage.setContent2(page.getContent2());
+        currentPage.setContent3(page.getContent3());
+        currentPage.setTemplate(page.getTemplate());
+
+        pageService.savePage(currentPage);
+        return new ResponseEntity<Page>(currentPage, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/site/{id}", method = RequestMethod.DELETE)
@@ -149,7 +179,22 @@ public class SiteController {
         }
 
         siteService.deleteSiteById(id);
-        return new ResponseEntity<Site>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<Site>(site,HttpStatus.NO_CONTENT);
+    }
+
+    @RequestMapping(value = "/site/{siteId}/page/{pageId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deletePage(@PathVariable("siteId") long siteId,@PathVariable("pageId") long pageId) {
+        Site site = siteService.findById(siteId);
+        Page page = pageService.findById(pageId);
+
+        if (page == null) {
+            return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
+        }
+
+        site.getPages().remove(page);
+        pageService.deletePageById(pageId);
+        siteService.updateSite(site);
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 
     @RequestMapping(value = "/site/", method = RequestMethod.DELETE)

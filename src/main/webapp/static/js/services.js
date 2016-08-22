@@ -100,7 +100,7 @@ siteApp.factory('UserService', ['$http', '$q', function($http, $q){
         },
 
         updateUser: function(user, id){
-            return $http.post('/user/'+id, user)
+            return $http.put('/user/'+id, user)
                 .then(
                     function(response){
                         return response.data;
@@ -221,6 +221,46 @@ siteApp.factory('SiteService', ['$http', '$q', function($http, $q){
                     },
                     function(errResponse){
                         console.error('Error while deleting user');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        deletePage: function(siteId,pageId){
+            return $http.delete('/site/' + siteId + '/page/'+ pageId)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while deleting user');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        getPageById: function(id){
+            return $http.get('/page/'+id)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while getting user');
+                        return $q.reject(errResponse);
+                    }
+                );
+        },
+
+        updatePage: function(page, id){
+            console.log(page);
+            return $http.put('/page/'+id, page)
+                .then(
+                    function(response){
+                        return response.data;
+                    },
+                    function(errResponse){
+                        console.error('Error while updating user');
                         return $q.reject(errResponse);
                     }
                 );

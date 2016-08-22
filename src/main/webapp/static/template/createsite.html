@@ -3,7 +3,7 @@
         <form id="center-content-area">
             <div class="form-group has-feedback">
                 <label  class="control-label">Enter site name:</label>
-                <input type="text" class="form-control" required="required" ng-model="name"
+                <input type="text" class="form-control" required="required" ng-model="sitename"
                        value="" placeholder="Example : Memes" minlength="2" maxlength="30">
             </div>
 
@@ -11,7 +11,7 @@
                 <label class="control-label">Site description:</label>
                 <textarea id="message" class="form-control" rows="3"
                           placeholder="Example : Thus site about memes" ng-model="description"
-                          minlength="20" maxlength="500" required="required"></textarea>
+                          minlength="5" maxlength="500" required="required"></textarea>
             </div>
 
             <div class="form-group has-feedback">
@@ -25,10 +25,24 @@
                     Dark
                 </label>
             </div>
+            <div class="form-group has-feedback">
+                <div col-sm-3>
+                    <label class="control-label">Load site image :</label>
+                    <br>
+                    <button type="button" class="btn btn-info"
+                            ng-click="load_image()">Load
+                    </button>
+                </div>
+                <hr>
+                <div  class="siteLogo">
+                            <img style="width:600px; height:100%;" ng-model="siteLogoUrl" ng-src={{siteLogoUrl}}>
+                </div>
+            </div>
 
-            <button ng-click="save()">Save</button>
+            <button type="button" class="btn  btn-lg btn-success" ng-click="save()">Save</button>
         </form><!-- Конец формы -->
     </div>
 
 
 </div>
+

@@ -1,34 +1,76 @@
 <div class="container row">
-    <div class="col-sm-8 col-sm-push-2" >
-        <form id="center-content-area">
-            <div class="form-group has-feedback">
-                <label  class="control-label">Enter site name:</label>
-                <input type="text" class="form-control" required="required"
-                       value="" placeholder="Example : Memes" minlength="2" maxlength="30">
+    <div class="" >
+        <div class="col-sm-4 col-sm-push-1">
+            <form id="center-content-area">
+                <div class="form-group has-feedback">
+                    <label  class="control-label">Enter site name:</label>
+                    <input type="text" class="form-control" required="required" ng-model="site.sitename"
+                           value={{site.sitename}} placeholder="Example : Memes" minlength="2" maxlength="30" >
+                </div>
+
+                <div class="form-group has-feedback">
+                    <label class="control-label">Site description:</label>
+                    <textarea id="message" class="form-control" rows="3"
+                              placeholder="Example : Thus site about memes" ng-model="site.description"
+                              minlength="20" maxlength="500" required="required">{{site.description}}</textarea>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <label class="control-label">Choose theme :</label>
+                    <label class="radio-inline"><input type="radio" name="optradio"
+                                                       ng-click="change_theme('default')">
+                        Default
+                    </label>
+                    <label class="radio-inline"><input type="radio" name="optradio"
+                                                       ng-click="change_theme('dark')">
+                        Dark
+                    </label>
+                </div>
+                <div class="form-group has-feedback">
+                    <div col-sm-3>
+                        <label class="control-label">Load site image :</label>
+                        <br>
+                        <button type="button" class="btn btn-info"
+                                ng-click="load_image()">Load
+                        </button>
+                    </div>
+                    <hr>
+                    <div  class="siteLogo">
+                        <img style="width:200px; height:100%;" ng-model="site.siteLogoUrl" ng-src={{site.siteLogoUrl}}>
+                    </div>
+                </div>
+
+                <button type="button" class="btn  btn-lg btn-success" ng-click="save()">Save</button>
+            </form><!-- Конец формы -->
+        </div>
+            <div class="panel panel-default col-sm-4 col-sm-push-2" >
+                <table class="table table-hover">
+                    <thead>
+                    <tr><th>Title</th>
+                        <th>Controls</th>
+                    </tr></thead>
+                    <tbody>
+                    <tr ng-repeat="page in site.pages">
+                        <td>{{page.title}}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-default" ng-click="show_page "href="/show-site/">Show</a>
+                                <a class="btn btn-warning"  ng-click="edit_page(page.id)" >Edit</a>
+                                <a class="btn btn-danger"  ng-click="delete(page.id)" >Destroy</a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button type="button" class="btn btn-success btn-sm" ng-click="add_page()"><span class="glyphicon glyphicon-plus"></span> Add</button>
+                <hr>
             </div>
 
-            <div class="form-group has-feedback">
-                <label class="control-label">Site description:</label>
-                <textarea id="message" class="form-control" rows="3"
-                          placeholder="Example : Thus site about memes"
-                          minlength="20" maxlength="500" required="required"></textarea>
-            </div>
-
-            <div class="form-group has-feedback">
-                <label class="control-label">Choose theme :</label>
-                <label class="radio-inline"><input type="radio" name="optradio"
-                                                   ng-click="change_theme('default')">
-                    Default
-                </label>
-                <label class="radio-inline"><input type="radio" name="optradio"
-                                                   ng-click="change_theme('dark')">
-                    Dark
-                </label>
-            </div>
 
             <a href="/#/edit-site"><button ng-click="update()">Save</button></a>
-        </form><!-- Конец формы -->
+
     </div>
 
 
 </div>
+

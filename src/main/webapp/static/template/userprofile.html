@@ -9,8 +9,6 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3 col-lg-3 " align="center">
-                            <div class="dropzone" file-dropzone="[image/png, image/jpeg, image/gif]"
-                                 file="image" file-name="imageFileName" data-max-file-size="3">
                                 <img  ng-model="image" ng-src={{image}} src="{{user.avatarUrl}}" class="img-circle center-block image-container img-responsive"/>
                             </div>
                         </div>
@@ -84,16 +82,9 @@
                         <div class="row" ng-show="isShowSites">
 
                             <div class="col-md-12">
-                                <a href="#/create-site">
-                                    <button type="button" ng-show="isRootUser() " class="btn btn-default btn-block">{{'CREATE_SITE'}}</button>
-                                </a>
-                            </div>
-
-                            <div class="col-md-12">
 
                                 <div class="row">
                                     <div class="col-md-6">
-
                                         <button type="button" class="btn btn-sm btn-block">
                                             {{'BYRATE' | translate}}
                                         </button>
@@ -106,38 +97,25 @@
                                     </div>
                                 </div>
 
-                                <div class="row" ng-repeat="site in user.site ">
-
-                                    <div class="row">
-                                        <div>
-                                            <a href="#/users/{{site.user.username}}">{{site.username}}</a>
+                                <div class="col-sm-6 " ng-repeat="site in user.site ">
+                                    <div class="card radius shadowDepth1 col-sm-12" >
+                                        <div class="card__image border-tlr-radius">
+                                            <img src="{{site.siteLogoUrl}}" height="200px"  class="border-tlr-radius">
                                         </div>
-                                    </div>
 
-                                    <div class="row">
-                                        <h2 align="center">{{site.name}}</h2>
-                                        <div class="preview-img text-center">
-                                            <a href="#/site/{{site.id}}" >
-                                                <div class="row">
-                                                    <img src="{{site.pages[0].blocks[0].imageUrl}}" class="img-circle center-block image-container"/>
-                                                </div>
-                                            </a>
+                                        <div class="card__content card__padding">
+
+                                            <div class="card__meta">
+                                                <a href="#">Web Design</a>
+                                                <time>17th March</time>
+                                            </div>
+
+                                            <article class="card__article">
+                                                <h2><a href="#">{{site.sitename}}</a></h2>
+
+                                                <p>{{site.description}}</p>
+                                            </article>
                                         </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <p class="text-center">{{site.description}}</p>
-                                    </div>
-
-                                    <hr>
-
-
-                                    <div class="row" >
-                                        <a href="#/site/{{site.id}}">{{'COMMENTS' | translate}}:{{site.comments.length}}</a>
-                                    </div>
-
-                                    <div class="row">
-                                        <p><a class="btn btn-primary" href="#/site/{{site.id}}" role="button">{{'VIEW_COMIX' | translate}}<span class="glyphicon glyphicon-chevron-right"></span></a></p>
                                     </div>
                                 </div>
                                 </div>

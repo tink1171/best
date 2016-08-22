@@ -12,12 +12,10 @@ siteApp.controller('LoginCtrl',[
                 $rootScope.authToken = authToken;
                 if ($scope.rememberMe) {
                     $cookieStore.put('authToken', authToken);
-                    alert(authToken);
                 }
                 UserLoginService.get(function(user) {
                     $rootScope.user = user;
                     $location.path("/");
-                    alert(user.userName);
                 });
             });
         };

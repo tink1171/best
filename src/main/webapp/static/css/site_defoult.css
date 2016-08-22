@@ -59,3 +59,23 @@ body{
     border-bottom: 1px solid #3c3c3c;
 }
 
+.box_view{
+    float:left ;
+    width: 590px;
+    min-height: 600px;
+    border: 1px solid cornflowerblue;
+}
+
+.rectangle_vertical_view {
+    float:left ;
+    width: 600px;
+    min-height: 1200px;
+    border: 1px solid cornflowerblue;
+}
+
+.rectangle_horizontal_view {
+    float:left ;
+    width: 1200px;
+    min-height: 600px;
+    border: 1px solid cornflowerblue;
+}
